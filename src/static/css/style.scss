@@ -19,9 +19,10 @@ html,body {
 }
 
 #content {
-    float: right;
     height: 100%;
-    width: 78%;
+    width: 83%;
+    position: absolute;
+    padding: 0 0 0 225px;
 
  }
 
@@ -70,7 +71,7 @@ html,body {
 
 
 #sidebar {
-    float: left;
+    position: absolute;
     background-color: #2f3b4c;
     width: 200px;
     height: 100%;
@@ -82,6 +83,10 @@ html,body {
     font-weight: 600;
     color: #8a9ea8;
     cursor: pointer;
+
+    span {
+        margin-left: 5px;
+    }
 
 }
 
@@ -99,18 +104,11 @@ html,body {
 .todos {
     margin: 20px 20px 0 0;
     background-color: white;
-    height: 80%;
+    height: 90%;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-//.caption {
-//    float: left;
-//
-//    font-size: 20px;
-//    color:#444445;
-//    padding: 10px;
-//}
 
 .button {
     float: right;

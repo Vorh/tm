@@ -25,14 +25,14 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 </head>
 <body>
 <div id="container">
-    <?php include 'sidebar.php'?>
+    <?php include 'partMain/sidebar.php' ?>
     <div id="content">
         <?php
 
         if (isset($_GET['create'])) {
-            include 'createTodo.php';
+            include 'partMain/createTodo.php';
         } else {
-            include 'listTodo.php';
+            include 'partMain/listTodo.php';
         }
 
         ?>
