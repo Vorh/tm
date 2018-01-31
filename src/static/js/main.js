@@ -1,4 +1,26 @@
 
+$(document).ready(function () {
+
+    $('#create-new-todo').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: '/api/create.php',
+            data: $('#create-new-todo').serialize(),
+            complete:function(resp){
+                if (resp.status === 200){
+                    window.location.replace('/index.php?list');
+                }
+            },
+
+        });
+
+    });
+});
+
+
+
+
 var xhr = new XMLHttpRequest();
 
 const  api = '/api/';
@@ -90,9 +112,7 @@ function getListTodo(id) {
 
 
 
-function createTodo() {
 
-}
 
 function deleteTodo(id) {
     xhr.open("GET", api + "delete.php" + '?id=' + id, true);

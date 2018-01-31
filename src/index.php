@@ -18,10 +18,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 <head>
     <meta charset="UTF-8">
     <title>Todo</title>
-    <link rel="stylesheet" href="static/css/style.css">
-    <script src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
-    <script src="static/js/main.js"></script>
-
+    <?php include 'resources.php' ?>
 </head>
 <body>
 <div id="container">

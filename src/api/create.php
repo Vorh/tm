@@ -27,3 +27,6 @@ $todo->caption= validateInput($_POST['caption']);
 $todo->userId = $_SESSION['id'];
 
 $dao->createTodo($todo);
+
+header("HTTP/1.1 200 OK");
+
