@@ -7,4 +7,4 @@ from src import app
 @app.route('/index')
 def index():
     user = {'username': 'YARIK'}
-    return render_template('index.html', title='Home', user=user)
+    return render_template('index.html', user=user)
