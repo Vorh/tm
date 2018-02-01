@@ -4,3 +4,6 @@
 
 *.css
 *.map
+
+venv/
+flask/flask
