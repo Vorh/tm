@@ -1,0 +1,14 @@
+<html lang="en">
+<header>
+    {% if title %}
+    <title> {{title}} - TM</title>
+    {% else %}
+    <title> Welcome to TM</title>
+    {% endif %}
+</header>
+<body>
+    <div>TM: <a href="/index">Home</a></div>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
