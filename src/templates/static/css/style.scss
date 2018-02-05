@@ -1,0 +1,111 @@
+@import 'create_todo.css';
+@import 'todos.css';
+
+html, body {
+  background-color: #eef1f4;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  height: 100%;
+  width: 83%;
+  position: absolute;
+  padding: 0 0 0 225px;
+
+}
+
+.logo {
+  background-color: #3ea06f;
+  height: 60px;
+  width: 100%;
+
+  .inner-box {
+    cursor: pointer;
+    color: #1c1e29;
+    font-size: 35px;
+
+    padding: 5px 0 0 25px;
+
+    span {
+      margin-left: 10px;
+    }
+
+  }
+
+}
+
+.combox {
+  width: 150px;
+  height: 35px;
+  margin: 10px 10px 0 20px;
+  background-color: #ff5252;
+  border-radius: 2px;
+  cursor: pointer;
+
+  p {
+    color: #eef1f4;
+    font-weight: 800;
+    padding: 5px 0 0 40px;
+  }
+}
+
+#sidebar {
+  position: absolute;
+  background-color: #2f3b4c;
+  width: 200px;
+  height: 100%;
+
+  z-index: 1;
+}
+
+.item {
+  padding: 10px 0 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #8a9ea8;
+  cursor: pointer;
+
+  span {
+    margin-left: 5px;
+  }
+
+}
+
+.item:hover {
+  color: #fff;
+}
+
+.panel {
+  height: 80px;
+}
+
+.todos {
+  margin: 20px 20px 0 0;
+  background-color: white;
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.button {
+  float: right;
+
+  background-color: #ff5252;
+  width: 95px;
+  height: 20px;
+  padding: 10px 15px 15px 30px;
+
+  color: white;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+

@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     $('#create-new-todo').submit(function (e) {
@@ -7,8 +6,8 @@ $(document).ready(function () {
             type: "POST",
             url: '/api/create.php',
             data: $('#create-new-todo').serialize(),
-            complete:function(resp){
-                if (resp.status === 200){
+            complete: function (resp) {
+                if (resp.status === 200) {
                     window.location.replace('/index.php?list');
                 }
             },
@@ -19,18 +18,16 @@ $(document).ready(function () {
 });
 
 
-
-
 var xhr = new XMLHttpRequest();
 
-const  api = '/api/';
+const api = '/api/';
 
 
 function getListTodo(id) {
     xhr.open("GET", api + "read.php?id=" + id, true);
     xhr.onload = function (e) {
-        if (xhr.readyState === 4){
-            if (xhr.status === 200){
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
 
                 var todoEl = document.getElementsByClassName('todos')[0];
 
@@ -84,8 +81,8 @@ function getListTodo(id) {
                     todoEl.appendChild(todo);
 
 
-                    (function (item,todo) {
-                        btnTdelete.addEventListener('click',function () {
+                    (function (item, todo) {
+                        btnTdelete.addEventListener('click', function () {
                             deleteTodo(item.id);
 
                             var todoEl = document.getElementsByClassName('todos')[0];
@@ -94,12 +91,12 @@ function getListTodo(id) {
                         });
 
 
-                        btnTComplete.addEventListener('click',function () {
+                        btnTComplete.addEventListener('click', function () {
                             completeTodo(item.id);
                             var todoEl = document.getElementsByClassName('todos')[0];
                             todoEl.removeChild(todo);
                         })
-                    })(item,todo);
+                    })(item, todo);
 
                 }
             }
@@ -110,10 +107,6 @@ function getListTodo(id) {
 }
 
 
-
-
-
-
 function deleteTodo(id) {
     xhr.open("GET", api + "delete.php" + '?id=' + id, true);
     xhr.send(null);
@@ -121,7 +114,7 @@ function deleteTodo(id) {
 }
 
 function completeTodo(id) {
-    xhr.open("GET",api + "complete.php" + '?id=' + id,true);
+    xhr.open("GET", api + "complete.php" + '?id=' + id, true);
     xhr.send(null);
 }
 
