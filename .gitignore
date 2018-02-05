@@ -5,5 +5,5 @@
 *.css
 *.map
 
-venv/
-flask/flask
+venvh/
+tm-py/
