@@ -1,3 +1,6 @@
+import pymysql
+
+
 class UserDao:
     def __init__(self, cursor):
         self.cursor = cursor
@@ -13,10 +16,9 @@ class UserDao:
         cursor.execute(sql)
         return self.cursor.fetchone()[0] == 1
 
-
-userDao = UserDao(cursor)
-
-print(userDao.isExistUser('Vorh'))
-print(userDao.isExistUser('Vorh122312'))
-print(userDao.isExistUser('Vorh122323112'))
-print(userDao.isCorrectLogin('Vorh', '12'))
+# userDao = UserDao(cursor)
+#
+# print(userDao.isExistUser('Vorh'))
+# print(userDao.isExistUser('Vorh122312'))
+# print(userDao.isExistUser('Vorh122323112'))
+# print(userDao.isCorrectLogin('Vorh', '12'))

@@ -1,7 +1,7 @@
 from flask import Flask, Config
 from config import Config
 from flask_injector import FlaskInjector
-from injector import inject
+from injector import Module, Injector, inject, singleton
 import pymysql
 from src.dao import UserDao
 
