@@ -1,24 +1,37 @@
 import pymysql
+from injector import Injector, inject
+
+
+class DataSource:
+
+    def __init__(self):
+        print('Init DS')
+        self.db = pymysql.connect('localhost', 'root', 'root', 'tm')
 
 
 class UserDao:
-    def __init__(self, cursor):
-        self.cursor = cursor
+
+    @inject
+    def __init__(self, ds: DataSource):
+        print('Init UserDao')
+        self.ds = ds.db
 
     def isExistUser(self, name):
+        db_cursor = self.ds.cursor()
         sql = "select count(*) from users where username = '%s'" % name
-        cursor.execute(sql)
-        return self.cursor.fetchone()[0] == 1
+        db_cursor.execute(sql)
+        return db_cursor.fetchone()[0] == 1
 
     def isCorrectLogin(self, name, password):
+        db_cursor = self.ds.cursor()
         sql = "select count(*) from users where username = '%s' and password = '%s'" % \
               (name, password)
-        cursor.execute(sql)
-        return self.cursor.fetchone()[0] == 1
+        db_cursor.execute(sql)
+        return db_cursor.fetchone()[0] == 1
 
-# userDao = UserDao(cursor)
-#
-# print(userDao.isExistUser('Vorh'))
-# print(userDao.isExistUser('Vorh122312'))
-# print(userDao.isExistUser('Vorh122323112'))
-# print(userDao.isCorrectLogin('Vorh', '12'))
+
+injector = Injector()
+print('Init injector')
+outer = injector.get(UserDao)
+
+print(outer.isExistUser('Vorh'))
