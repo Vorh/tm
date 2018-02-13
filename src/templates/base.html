@@ -6,26 +6,11 @@
     <title> Welcome to TM</title>
     {% endif %}
 
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <link rel="stylesheet" href="static/css/style.css">
-    <script src="static/js/main.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
 </header>
 <body>
-    <div>TM:
-        <a href="{{ url_for('index') }}">Home</a>
-        <a href="{{ url_for ('login') }}">Login</a>
-    </div>
-    <hr>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <li> {{message}}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
     {% block content %}{% endblock %}
 </body>
 </html>

@@ -2,6 +2,12 @@ from flask import render_template, flash, redirect, url_for
 from src import app
 from src.forms import LoginForm
 from src.dao import UserDao
+from injector import Injector, inject
+
+injector = Injector()
+userDao = injector.get(UserDao)
+
+
 
 
 @app.route('/')
@@ -23,8 +29,7 @@ def index():
 
 
 @app.route('/login', methods=['GET', 'POST'])
-def login(userDao: UserDao):
-    print(userDao.isCorrectLogin('Vorh', '12'))
+def login():
     form = LoginForm()
     if form.validate_on_submit():
         flash('Login requested for user {}, remember_me={}'.format(

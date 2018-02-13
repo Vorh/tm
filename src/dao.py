@@ -1,12 +1,12 @@
 import pymysql
-from injector import Injector, inject
+from injector import inject
 
 
 class DataSource:
 
     def __init__(self):
         print('Init DS')
-        self.db = pymysql.connect('localhost', 'root', 'root', 'tm')
+        self.con = pymysql.connect('localhost', 'root', 'root', 'tm')
 
 
 class UserDao:
@@ -14,7 +14,7 @@ class UserDao:
     @inject
     def __init__(self, ds: DataSource):
         print('Init UserDao')
-        self.ds = ds.db
+        self.ds = ds.con
 
     def isExistUser(self, name):
         db_cursor = self.ds.cursor()
@@ -28,10 +28,3 @@ class UserDao:
               (name, password)
         db_cursor.execute(sql)
         return db_cursor.fetchone()[0] == 1
-
-
-injector = Injector()
-print('Init injector')
-outer = injector.get(UserDao)
-
-print(outer.isExistUser('Vorh'))
