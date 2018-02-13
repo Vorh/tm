@@ -1,6 +1,7 @@
 @import 'create_todo.css';
 @import 'todos.css';
 @import 'login.css';
+@import 'register.css';
 
 html, body {
   background-color: #eef1f4;
@@ -8,6 +9,13 @@ html, body {
   width: 100%;
   padding: 0;
   margin: 0;
+}
+
+.center {
+
+  width: 30%;
+  margin: auto;
+
 }
 
 #container {
