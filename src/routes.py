@@ -1,4 +1,5 @@
-from flask import render_template, flash, redirect, url_for
+from flask import Flask, flash, redirect, render_template, request, session, abort
+import os
 from src import app
 from src.forms import LoginForm
 from src.dao import UserDao
@@ -11,6 +12,12 @@ userDao = injector.get(UserDao)
 
 
 @app.route('/')
+def home():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        return 'Hello boss'
+
 @app.route('/index')
 def index():
     user = {'username': 'YARIK'}
@@ -30,12 +37,12 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        flash('Login requested for user {}, remember_me={}'.format(
-            form.username.data, form.remember_me.data))
-        return redirect(url_for('index'))
-    return render_template('login.html', title='Sign In', form=form)
+    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+        session['logged_in'] = True
+    else:
+        flash('wrong password')
+    return home()
+    # return render_template('login.html', title='Sign In', form=form)
 
 
 @app.route('/register', methods=['GET', 'POST'])

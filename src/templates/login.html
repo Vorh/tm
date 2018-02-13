@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="wrapper center">
+    {% if session['logged_in'] %}
+    <p>You're logged in already!</p>
+    {% else %}
     <h2>Login</h2>
     <p>Please fill in your credentials to login.</p>
-    <form action="" method="post">
+    <form action="/login" method="post">
         <div class="form-group ">
             <label>Username:<sup>*</sup></label>
             <input type="text" name="username" class="form-control" value="">
@@ -20,6 +24,7 @@
         </div>
         <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
     </form>
+    {% endif %}
 </div>
 {% endblock %}
 
