@@ -9,14 +9,13 @@ injector = Injector()
 userDao = injector.get(UserDao)
 
 
-
-
 @app.route('/')
 def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
         return 'Hello boss'
+
 
 @app.route('/index')
 def index():
@@ -37,12 +36,21 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
+    password = request.form['password']
+    login = request.form['username']
+
+    if userDao.isCorrectLogin(login, password):
         session['logged_in'] = True
     else:
         flash('wrong password')
     return home()
     # return render_template('login.html', title='Sign In', form=form)
+
+
+@app.route('/logout')
+def logout():
+    session['logged_in'] = False
+    return home()
 
 
 @app.route('/register', methods=['GET', 'POST'])
