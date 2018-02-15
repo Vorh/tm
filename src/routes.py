@@ -21,23 +21,8 @@ def home():
 
 @app.route('/index')
 def index():
-    user = {'username': 'YARIK'}
-
-    posts = [
-        {
-            'author': {'username': 'Arik'},
-            'body': 'Test'
-        },
-        {
-            'author': {'username': 'Test'},
-            'body': 'Max'
-        }
-    ]
-
     todos = todoDao.getListTodo(10)
-
-    print(todos)
-    return render_template('index.html', user=user, posts=posts)
+    return render_template('index.html', todos=todos)
 
 
 @app.route('/login', methods=['GET', 'POST'])

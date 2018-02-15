@@ -3,7 +3,12 @@
 
 {% block content %}
 
-{% include 'sidebar.html' %}
 
+<div id="container">
+    {% include 'sidebar.html' %}
 
+    <div id="content">
+        {% include 'listTodo.html' %}
+    </div>
+</div>
 {% endblock %}

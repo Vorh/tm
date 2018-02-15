@@ -1,1 +1,24 @@
-<div class="todos" id="scroll-bar"></div>
+<div class="todos" id="scroll-bar">
+
+    {% for todo in todos %}
+
+    <div class="todo">
+        <div class="box-line">
+            <div class="caption-t">{{todo.content}}</div>
+            <div class="btn-t-complete">
+                <i class="fas fa-check"></i>
+            </div>
+        </div>
+
+        <div class="box-line">
+            <div class="date-t">12.02.02</div>
+            <div class="btn-t-delete">
+                <i class="fas fa-trash"></i>
+            </div>
+        </div>
+
+        <div class="separator-todes"></div>
+    </div>
+
+    {% endfor %}
+</div>
