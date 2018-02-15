@@ -1,12 +1,6 @@
 import pymysql
 from injector import inject
-
-
-class DataSource:
-
-    def __init__(self):
-        print('Init DS')
-        self.con = pymysql.connect('localhost', 'root', 'root', 'tm')
+from src.dao.mainDao import DataSource
 
 
 class UserDao:

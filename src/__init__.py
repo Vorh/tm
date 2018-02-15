@@ -1,7 +1,6 @@
 from flask import Flask, Config
 from config import Config
 import pymysql
-from src.dao import UserDao, DataSource
 
 
 app = Flask(__name__)

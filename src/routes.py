@@ -2,11 +2,13 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 import os
 from src import app
 from src.forms import LoginForm
-from src.dao import UserDao
+from src.dao.UserDao import UserDao
+from src.dao.TodoDao import TodoDao
 from injector import Injector, inject
 
 injector = Injector()
 userDao = injector.get(UserDao)
+todoDao = injector.get(TodoDao)
 
 
 @app.route('/')
@@ -14,7 +16,7 @@ def home():
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
-        return 'Hello boss'
+        return render_template('index.html')
 
 
 @app.route('/index')
@@ -31,6 +33,10 @@ def index():
             'body': 'Max'
         }
     ]
+
+    todos = todoDao.getListTodo(10)
+
+    print(todos)
     return render_template('index.html', user=user, posts=posts)
 
 
