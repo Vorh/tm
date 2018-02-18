@@ -23,9 +23,15 @@ class TodoDao:
             todo.id = row['id']
             todo.content = row['content']
             todo.caption = row['caption']
-            print(todo.id)
-            print(todo.caption)
             todos.append(todo)
 
         print('Todos size: %s' % len(todos))
         return todos
+
+    def insertTodo(self, todo):
+        print("Insert todo for user id %s " % todo.userId)
+        sql = "insert into todo (content, date,  user_id, caption) " \
+              " values (%s,now(),%s,%s)" % todo.content, todo.userId, todo.caption
+
+        cur = self.ds.getCursor()
+        cur.execute(sql)

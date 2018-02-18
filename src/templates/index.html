@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 
-{% block content %}
+{% block main %}
 
 
 <div id="container">
     {% include 'sidebar.html' %}
 
     <div id="content">
-        {% include 'listTodo.html' %}
+        {% block content %}{% endblock %}
     </div>
 </div>
 {% endblock %}

@@ -22,7 +22,7 @@ def home():
 @app.route('/index')
 def index():
     todos = todoDao.getListTodo(10)
-    return render_template('index.html', todos=todos)
+    return render_template('listTodo.html', todos=todos)
 
 
 @app.route('/login', methods=['GET', 'POST'])

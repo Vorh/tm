@@ -1,3 +1,6 @@
+{% extends "index.html" %}
+
+{% block content %}
 <div class="todos" id="scroll-bar">
 
     {% for todo in todos %}
@@ -22,3 +25,5 @@
 
     {% endfor %}
 </div>
+
+{% endblock %}
