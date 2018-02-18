@@ -25,6 +25,15 @@ def index():
     return render_template('listTodo.html', todos=todos)
 
 
+@app.route('/createTodo', methods=['GET', 'POST'])
+def createTodo():
+    if request.method == 'GET':
+        return render_template('createTodo.html')
+    else:
+        print(request.form)
+        return render_template('listTodo.html'), 200
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     password = request.form['password']
