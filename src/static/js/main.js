@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     $('#create-new-todo').submit(function (e) {
@@ -10,8 +9,27 @@ $(document).ready(function () {
         });
 
     });
-});
 
+
+    $('.btn-t-delete').click(function () {
+        var id = $(this).closest('div[class^="todo"]').attr('data');
+        $.ajax({
+            type: "POST",
+            url: '/deleteTodo',
+            data: {id: id}
+        })
+    });
+
+
+    $('.btn-t-complete').click(function () {
+        var id = $(this).closest('div[class^="todo"]').attr('data');
+        $.ajax({
+            type: "POST",
+            url: '/completeTodo',
+            data: {id: id}
+        })
+    });
+});
 
 
 function deleteTodo(id) {

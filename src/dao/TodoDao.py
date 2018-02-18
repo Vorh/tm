@@ -23,6 +23,7 @@ class TodoDao:
             todo.id = row['id']
             todo.content = row['content']
             todo.caption = row['caption']
+            todo.complete = row['complete']
             todos.append(todo)
 
         print('Todos size: %s' % len(todos))

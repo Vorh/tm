@@ -5,12 +5,15 @@
 
     {% for todo in todos %}
 
-    <div class="todo">
+    <div class="todo {{'complete' if todo.complete }}" data="{{todo.id}}">
         <div class="box-line">
             <div class="caption-t">{{todo.content}}</div>
+
+            {% if not todo.complete %}
             <div class="btn-t-complete">
                 <i class="fas fa-check"></i>
             </div>
+            {% endif %}
         </div>
 
         <div class="box-line">
@@ -20,8 +23,8 @@
             </div>
         </div>
 
-        <div class="separator-todes"></div>
     </div>
+    <div class="separator-todes"></div>
 
     {% endfor %}
 </div>
