@@ -60,11 +60,11 @@ def register():
 
 @app.route('/deleteTodo', methods=['POST'])
 def deleteTodo():
-    print(request.form['id'])
+    todoDao.deleteTodo(10, request.form['id'])
     return 'Ok'
 
 
 @app.route('/completeTodo', methods=['POST'])
 def completeTodo():
-    print(request.form['id'])
+    todoDao.completeTodo(10, request.form['id'])
     return 'Ok'

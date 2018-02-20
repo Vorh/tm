@@ -24,6 +24,7 @@ class TodoDao:
             todo.content = row['content']
             todo.caption = row['caption']
             todo.complete = row['complete']
+            todo.deleted = row['deleted']
             todos.append(todo)
 
         print('Todos size: %s' % len(todos))
@@ -36,3 +37,18 @@ class TodoDao:
 
         cur = self.ds.getCursor()
         cur.execute(sql)
+
+    def deleteTodo(self, userId, todoId):
+        print("Delete todo %s for user id %s " % (todoId, userId))
+        sql = "update todo set deleted= true where id = %s and user_id = %s" % \
+              (userId, todoId)
+
+        self.ds.getCursor().execute(sql)
+
+    def completeTodo(self, userId, todoId):
+        print("Complete todo %s for user id %s" % (todoId, userId))
+        sql = "update todo set complete = true where id = %s and user_id = %s " % \
+              (userId, todoId)
+        print(sql)
+
+        self.ds.getCursor().execute(sql)
