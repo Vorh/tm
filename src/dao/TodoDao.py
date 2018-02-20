@@ -42,7 +42,7 @@ class TodoDao:
     def deleteTodo(self, userId, todoId):
         print("Delete todo %s for user id %s " % (todoId, userId))
         sql = "delete from todo where id = %s and user_id = %s" % \
-              (userId, todoId)
+              (todoId, userId)
 
         cursor = self.ds.getCursor()
         cursor.execute(sql)
@@ -51,8 +51,7 @@ class TodoDao:
     def completeTodo(self, userId, todoId):
         print("Complete todo %s for user id %s" % (todoId, userId))
         sql = "update todo set complete = true where id = %s and user_id = %s " % \
-              (userId, todoId)
-        print(sql)
+              (todoId, userId)
 
         cursor = self.ds.getCursor()
         cursor.execute(sql)
