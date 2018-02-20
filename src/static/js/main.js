@@ -12,34 +12,32 @@ $(document).ready(function () {
 
 
     $('.btn-t-delete').click(function () {
-        var id = $(this).closest('div[class^="todo"]').attr('data');
+
+        var parent = $(this).closest('div[class^="todo"]');
+        var id = parent.attr('data');
+
         $.ajax({
             type: "POST",
             url: '/deleteTodo',
             data: {id: id}
+        }).done(function (data) {
+            parent.remove();
         })
     });
 
 
     $('.btn-t-complete').click(function () {
-        var id = $(this).closest('div[class^="todo"]').attr('data');
+        var parent = $(this).closest('div[class^="todo"]');
+        var id = parent.attr('data');
+
         $.ajax({
             type: "POST",
             url: '/completeTodo',
             data: {id: id}
+        }).done(function (data) {
+            parent.addClass('complete');
         })
     });
 });
 
-
-function deleteTodo(id) {
-    xhr.open("GET", api + "delete.php" + '?id=' + id, true);
-    xhr.send(null);
-
-}
-
-function completeTodo(id) {
-    xhr.open("GET", api + "complete.php" + '?id=' + id, true);
-    xhr.send(null);
-}
 

@@ -56,3 +56,15 @@ def logout():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     return render_template('register.html')
+
+
+@app.route('/deleteTodo', methods=['POST'])
+def deleteTodo():
+    print(request.form['id'])
+    return 'Ok'
+
+
+@app.route('/completeTodo', methods=['POST'])
+def completeTodo():
+    print(request.form['id'])
+    return 'Ok'
