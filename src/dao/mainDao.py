@@ -9,3 +9,6 @@ class DataSource:
 
     def getCursor(self):
         return self.con.cursor(pymysql.cursors.DictCursor)
+
+    def commit(self):
+        self.con.commit()
