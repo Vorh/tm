@@ -6,6 +6,8 @@ $(document).ready(function () {
             type: "POST",
             url: '/createTodo',
             data: $('#create-new-todo').serialize(),
+        }).done(function (resp) {
+            window.location.href = 'listTodo';
         });
 
     });
@@ -13,7 +15,7 @@ $(document).ready(function () {
 
     $('.btn-t-delete').click(function () {
 
-        var parent = $(this).closest('div[class^="todo"]');
+        var parent = $(this).closest('div[class="todo"]');
         var id = parent.attr('data');
 
         $.ajax({
@@ -27,7 +29,7 @@ $(document).ready(function () {
 
 
     $('.btn-t-complete').click(function () {
-        var parent = $(this).closest('div[class^="todo"]');
+        var parent = $(this).closest('.todo');
         var id = parent.attr('data');
 
         $.ajax({
@@ -35,7 +37,7 @@ $(document).ready(function () {
             url: '/completeTodo',
             data: {id: id}
         }).done(function (data) {
-            parent.addClass('complete');
+            parent.find('.todo-container').addClass('complete');
         })
     });
 });

@@ -24,6 +24,7 @@ class TodoDao:
             todo.content = row['content']
             todo.caption = row['caption']
             todo.complete = row['complete']
+            todo.date = row['date']
             todos.append(todo)
 
         print('Todos size: %s' % len(todos))

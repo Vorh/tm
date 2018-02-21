@@ -5,24 +5,26 @@
 
     {% for todo in todos %}
 
-    <div class="todo {{'complete' if todo.complete }}" data="{{todo.id}}">
-        <div class="box-line">
-            <div class="caption-t">{{todo.content}}</div>
+    <div class="todo " data="{{todo.id}}">
+        <div class="todo-container {{'complete' if todo.complete }}">
+            <div class="box-line">
+                <div class="caption-t">{{todo.content}}</div>
 
-            {% if not todo.complete %}
-            <div class="btn-t-complete">
-                <i class="fas fa-check"></i>
+                {% if not todo.complete %}
+                <div class="btn-t-complete">
+                    <i class="fas fa-check"></i>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
-        </div>
 
-        <div class="box-line">
-            <div class="date-t">12.02.02</div>
-            <div class="btn-t-delete">
-                <i class="fas fa-trash"></i>
+            <div class="box-line">
+                <div class="date-t">{{todo.date}}</div>
+                <div class="btn-t-delete">
+                    <i class="fas fa-trash"></i>
+                </div>
             </div>
         </div>
-    <div class="separator-todes"></div>
+        <div class="separator-todes"></div>
     </div>
 
     {% endfor %}

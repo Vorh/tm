@@ -1,9 +1,12 @@
 .todo {
+
+  .todo-container {
   padding: 20px 20px 5px 20px;
 
-  &.complete {
-    background: #d4fde2;
-    text-decoration: line-through !important;
+    &.complete {
+      background: #d4fde2;
+      text-decoration: line-through !important;
+    }
   }
 
 }
@@ -11,7 +14,6 @@
 .box-line {
   height: 35px;
 }
-
 
 .caption-t {
   font-size: 20px;
@@ -37,7 +39,6 @@
   color: #444445;
   opacity: 0.6;
 }
-
 
 .separator-todes {
   background-color: #2a2a2a;

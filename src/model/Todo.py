@@ -1,3 +1,6 @@
+import datetime
+
+
 class Todo:
     id = 0
     content = ''
@@ -5,3 +8,4 @@ class Todo:
     complete = False
     userId = 0
     caption = ''
+    date = datetime

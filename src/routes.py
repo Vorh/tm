@@ -19,7 +19,7 @@ def home():
         return render_template('index.html')
 
 
-@app.route('/index')
+@app.route('/listTodo')
 def index():
     todos = todoDao.getListTodo(10)
     return render_template('listTodo.html', todos=todos)
@@ -31,7 +31,7 @@ def createTodo():
         return render_template('createTodo.html')
     else:
         print(request.form)
-        return render_template('listTodo.html'), 200
+        return "Ok"
 
 
 @app.route('/login', methods=['GET', 'POST'])
