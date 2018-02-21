@@ -12,3 +12,8 @@ class DataSource:
 
     def commit(self):
         self.con.commit()
+
+    def execute(self, sql):
+        print(sql)
+        self.con.cursor().execute(sql)
+        self.con.commit()

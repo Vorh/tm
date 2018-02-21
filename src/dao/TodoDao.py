@@ -32,28 +32,16 @@ class TodoDao:
         return todos
 
     def insertTodo(self, todo):
-        print("Insert todo for user id %s " % todo.userId)
         sql = "insert into todo (content, date,  user_id, caption) " \
-              " values (%s,now(),%s,%s)" % todo.content, todo.userId, todo.caption
-
-        cur = self.ds.getCursor()
-        cur.execute(sql)
-        self.ds.commit()
+              " values ('%s',now(),%s,'%s')" % (todo.content, todo.userId, todo.caption)
+        self.ds.execute(sql)
 
     def deleteTodo(self, userId, todoId):
-        print("Delete todo %s for user id %s " % (todoId, userId))
         sql = "delete from todo where id = %s and user_id = %s" % \
               (todoId, userId)
-
-        cursor = self.ds.getCursor()
-        cursor.execute(sql)
-        self.ds.commit()
+        self.ds.execute(sql)
 
     def completeTodo(self, userId, todoId):
-        print("Complete todo %s for user id %s" % (todoId, userId))
         sql = "update todo set complete = true where id = %s and user_id = %s " % \
               (todoId, userId)
-
-        cursor = self.ds.getCursor()
-        cursor.execute(sql)
-        self.ds.commit()
+        self.ds.execute(sql)

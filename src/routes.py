@@ -1,6 +1,7 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
 import os
 from src import app
+from src.model.Todo import Todo
 from src.forms import LoginForm
 from src.dao.UserDao import UserDao
 from src.dao.TodoDao import TodoDao
@@ -23,15 +24,6 @@ def home():
 def index():
     todos = todoDao.getListTodo(10)
     return render_template('listTodo.html', todos=todos)
-
-
-@app.route('/createTodo', methods=['GET', 'POST'])
-def createTodo():
-    if request.method == 'GET':
-        return render_template('createTodo.html')
-    else:
-        print(request.form)
-        return "Ok"
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -68,3 +60,16 @@ def deleteTodo():
 def completeTodo():
     todoDao.completeTodo(10, request.form['id'])
     return 'Ok'
+
+
+@app.route('/createTodo', methods=['GET', 'POST'])
+def createTodo():
+    if request.method == 'GET':
+        return render_template('createTodo.html')
+    else:
+        todo = Todo()
+        todo.caption = request.form['caption']
+        todo.content = request.form['content']
+        todo.userId = 10
+        todoDao.insertTodo(todo)
+        return "Ok"
