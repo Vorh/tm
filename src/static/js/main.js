@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     $('.btn-t-delete').click(function () {
 
-        var parent = $(this).closest('div[class="todo"]');
+        var parent = $(this).closest('.todo');
         var id = parent.attr('data');
 
         $.ajax({
@@ -23,7 +23,9 @@ $(document).ready(function () {
             url: '/deleteTodo',
             data: {id: id}
         }).done(function (data) {
-            parent.remove();
+            parent.hide('slow', function () {
+                parent.remove();
+            });
         })
     });
 

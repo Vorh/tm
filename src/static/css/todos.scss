@@ -1,11 +1,21 @@
-.todo {
+.todos {
+  margin: 20px 20px 0 0;
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
+.todo {
+  background: white;
+  margin-bottom: 20px;
+  box-shadow: -2px 4px 20px -6px #777;
   .todo-container {
-  padding: 20px 20px 5px 20px;
+    padding: 20px 20px 5px 20px;
 
     &.complete {
-      background: #d4fde2;
-      text-decoration: line-through !important;
+      .caption-t {
+        text-decoration: line-through;
+      }
     }
   }
 
