@@ -5,11 +5,13 @@ from src.model.Todo import Todo
 from src.forms import LoginForm
 from src.dao.UserDao import UserDao
 from src.dao.TodoDao import TodoDao
+from src.dao.GoalDao import GoalDao
 from injector import Injector, inject
 
 injector = Injector()
 userDao = injector.get(UserDao)
 todoDao = injector.get(TodoDao)
+goalDao = injector.get(GoalDao)
 
 
 @app.route('/')
@@ -73,3 +75,9 @@ def createTodo():
         todo.userId = 10
         todoDao.insertTodo(todo)
         return "Ok"
+
+
+@app.route('/goals', methods=['POST', 'GET'])
+def getGoals():
+    goals = goalDao.getListGoal(10)
+    return render_template('goals.html', goals=goals)
