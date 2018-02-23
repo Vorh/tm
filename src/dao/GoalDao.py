@@ -44,6 +44,7 @@ class GoalDao:
                 goal.caption = row['gCaption']
                 goal.create_date = row['gDate']
                 goal.id = gId
+                goal.listTodo.append(todo)
                 goals[gId] = goal
 
         listGoals = []

@@ -42,6 +42,18 @@ $(document).ready(function () {
             parent.find('.todo-container').addClass('complete');
         })
     });
+
+    $('.goal-panel').click(function () {
+        var parent = $(this).closest('.goal');
+
+        $(this).find('svg').toggleClass('fa-arrow-down fa-arrow-up');
+
+        parent.find('.goal-todo').slideToggle('slow', function () {
+            // btn.toggleClass('', $(this).is(':visible'));
+
+        });
+    });
+
 });
 
 

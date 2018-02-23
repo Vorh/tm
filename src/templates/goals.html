@@ -4,7 +4,30 @@
 
 {% for goal in goals %}
 
-{{goal.caption}}
+
+<div class="goals scroll-bar">
+    <div class="goal" data="{{goal.id}}">
+        <div class="goal-container">
+            <div class="goal-body">
+                <span class="caption-t">{{goal.caption}}</span><br>
+                <span class="content-t">{{goal.create_date}}</span>
+            </div>
+            <div class="goal-panel"><i class="fas fa-arrow-down"></i></div>
+        </div>
+        <div class="goal-todo">
+            <i class="fas fa-dot-circle"></i>
+            {% for todo in goal.listTodo %}
+            <div>
+                {{todo.caption}}
+                <br>{{todo.date}}
+            </div>
+            {% endfor %}
+        </div>
+
+
+    </div>
+
+</div>
 
 {% endfor %}
 

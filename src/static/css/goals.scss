@@ -1,0 +1,50 @@
+.goals {
+  margin: 20px 20px 0 0;
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.goal {
+  background: white;
+  margin-bottom: 20px;
+  height: 100px;
+  box-shadow: -2px 4px 20px -6px #777;
+  .goal-container {
+    padding: 15px 20px 5px 20px;
+    height: 100%;
+
+    &.complete {
+      .caption-t {
+        text-decoration: line-through;
+      }
+    }
+  }
+
+}
+
+.goal-body {
+  float: left;
+  width: 90%;
+  height: 100%;
+}
+
+.goal-panel {
+  float: right;
+  width: 10%;
+  height: 100%;
+  color: #5aff75;
+  font-size: 24px;
+  padding: 20px 10px 10px 70px;
+  cursor: pointer;
+
+  &:hover {
+    color: #2f3b4c;
+  }
+}
+
+.goal-todo {
+  //display: none;
+  background: white;
+  box-shadow: -2px 4px 20px -6px #777;
+}
