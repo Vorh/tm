@@ -8,9 +8,11 @@
 .todo {
   background: white;
   margin-bottom: 20px;
+  height: 100px;
   box-shadow: -2px 4px 20px -6px #777;
   .todo-container {
-    padding: 20px 20px 5px 20px;
+    padding: 15px 20px 5px 20px;
+    height: 100%;
 
     &.complete {
       .caption-t {
@@ -22,7 +24,7 @@
 }
 
 .box-line {
-  height: 35px;
+  height: 55px;
 }
 
 .caption-t {
@@ -30,6 +32,14 @@
   color: #2a2a2a;
   font-weight: 500;
   float: left;
+  width: 100%;
+}
+
+.content-t {
+
+  font-size: 16px;
+  color: #757575;
+
 }
 
 .btn-t-complete {
