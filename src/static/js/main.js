@@ -48,10 +48,7 @@ $(document).ready(function () {
 
         $(this).find('svg').toggleClass('fa-arrow-down fa-arrow-up');
 
-        parent.find('.goal-todo').slideToggle('slow', function () {
-            // btn.toggleClass('', $(this).is(':visible'));
-
-        });
+        parent.find('.goal-todo-list').slideToggle();
     });
 
 });

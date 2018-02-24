@@ -2,33 +2,36 @@
 
 {% block content %}
 
-{% for goal in goals %}
-
 
 <div class="goals scroll-bar">
+    {% for goal in goals %}
     <div class="goal" data="{{goal.id}}">
         <div class="goal-container">
             <div class="goal-body">
                 <span class="caption-t">{{goal.caption}}</span><br>
-                <span class="content-t">{{goal.create_date}}</span>
+                <span class="content-t">  <i class="far fa-clock"></i> {{goal.create_date}}</span>
             </div>
             <div class="goal-panel"><i class="fas fa-arrow-down"></i></div>
         </div>
-        <div class="goal-todo">
-            <i class="fas fa-dot-circle"></i>
+        <div class="goal-todo-list">
             {% for todo in goal.listTodo %}
-            <div>
-                {{todo.caption}}
-                <br>{{todo.date}}
+            <div class="goal-todo">
+                {% if todo.complete %}
+                <i class="fas fa-check check"></i>
+                {% else %}
+                <i class="fas fa-dot-circle uncheck"></i>
+                {% endif %}
+                <span class="caption">{{todo.caption}}</span><br>
+                <!--<span class="date">{{todo.date}}</span>-->
             </div>
             {% endfor %}
         </div>
 
 
     </div>
+    {% endfor %}
 
 </div>
 
-{% endfor %}
 
 {% endblock %}

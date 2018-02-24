@@ -8,32 +8,31 @@
 .goal {
   background: white;
   margin-bottom: 20px;
-  height: 100px;
+  min-height: 100px;
+  margin-right: 10px;
   box-shadow: -2px 4px 20px -6px #777;
-  .goal-container {
-    padding: 15px 20px 5px 20px;
-    height: 100%;
 
-    &.complete {
-      .caption-t {
-        text-decoration: line-through;
-      }
+}
+
+.goal-container {
+  padding: 15px 20px 5px 20px;
+  min-height: 80px;
+  &.complete {
+    .caption-t {
+      text-decoration: line-through;
     }
   }
-
 }
 
 .goal-body {
   float: left;
   width: 90%;
-  height: 100%;
 }
 
 .goal-panel {
   float: right;
   width: 10%;
-  height: 100%;
-  color: #5aff75;
+  color: #9c9e9c;;
   font-size: 24px;
   padding: 20px 10px 10px 70px;
   cursor: pointer;
@@ -43,8 +42,41 @@
   }
 }
 
-.goal-todo {
-  //display: none;
+.goal-todo-list {
   background: white;
-  box-shadow: -2px 4px 20px -6px #777;
+  padding-bottom: 15px;
+
+  .separate-goal {
+    background-color: #2a2a2a;
+    height: 1px;
+    opacity: 0.2;
+  }
+
+  .caption {
+    margin-left: 5px;
+    color: #4c4c4c;
+    font-size: 20px;
+  }
+
+  .goal-todo {
+    width: 100%;
+    padding: 0px 0px 0px 20px;
+    margin-top: 10px;
+
+    .check {
+      color: #31d877;
+    }
+
+    .uncheck {
+      color: #7daef5;
+    }
+
+    .caption {
+
+    }
+
+    .date {
+
+    }
+  }
 }
