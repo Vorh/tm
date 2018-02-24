@@ -38,7 +38,7 @@ class GoalDao:
             todo.date = row['date']
 
             if gId in goals:
-                goals.get(gId).listTodo.append(todo)
+                goals[gId].listTodo.append(todo)
             else:
                 goal = Goal()
                 goal.caption = row['gCaption']
@@ -50,5 +50,7 @@ class GoalDao:
         listGoals = []
         for goal in goals:
             listGoals.append(goals[goal])
+            print(len(goals[goal].listTodo))
+
         print('Goals size : %s' % len(listGoals))
         return listGoals

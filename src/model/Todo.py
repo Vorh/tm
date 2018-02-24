@@ -2,10 +2,12 @@ import datetime
 
 
 class Todo:
-    id = 0
-    content = ''
-    deleted = False
-    complete = False
-    userId = 0
-    caption = ''
-    date = datetime
+
+    def __init__(self):
+        self.id = 0
+        self.content = ''
+        self.deleted = False
+        self.complete = False
+        self.userId = 0
+        self.caption = ''
+        self.date = datetime

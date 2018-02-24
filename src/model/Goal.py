@@ -2,9 +2,11 @@ import datetime
 
 
 class Goal:
-    id = 0
-    caption = ''
-    reward = ''
-    create_date = datetime
-    user_id = 0
-    listTodo = []
+
+    def __init__(self):
+        self.id = 0
+        self.caption = ''
+        self.reward = ''
+        self.create_date = datetime
+        self.user_id = 0
+        self.listTodo = []

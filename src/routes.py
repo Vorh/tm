@@ -23,7 +23,7 @@ def home():
 
 
 @app.route('/listTodo')
-def index():
+def listTodo():
     todos = todoDao.getListTodo(10)
     return render_template('listTodo.html', todos=todos)
 
@@ -77,7 +77,7 @@ def createTodo():
         return "Ok"
 
 
-@app.route('/goals', methods=['POST', 'GET'])
+@app.route('/goals', methods=['GET'])
 def getGoals():
     goals = goalDao.getListGoal(10)
     return render_template('goals.html', goals=goals)
