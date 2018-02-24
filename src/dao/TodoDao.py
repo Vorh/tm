@@ -36,6 +36,11 @@ class TodoDao:
               " values ('%s',now(),%s,'%s')" % (todo.content, todo.userId, todo.caption)
         self.ds.execute(sql)
 
+    def insertGoalTodo(self, todoId, goalId):
+        sql = """INSERT into goal_todo (goal_id, todo_id) VALUE (%s,%s);
+              """ % (goalId, todoId)
+        self.ds.execute(sql)
+
     def deleteTodo(self, userId, todoId):
         sql = "delete from todo where id = %s and user_id = %s" % \
               (todoId, userId)

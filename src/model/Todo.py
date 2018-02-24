@@ -11,3 +11,4 @@ class Todo:
         self.userId = 0
         self.caption = ''
         self.date = datetime
+        self.goalId = 0

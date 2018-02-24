@@ -2,10 +2,14 @@ $(document).ready(function () {
 
     $('#create-new-todo').submit(function (e) {
         e.preventDefault();
+
+        var data = $('#create-new-todo').serialize();
+        var gId = $('#dropdown-goals').attr('data');
+        data = data + "&gId=" + gId;
         $.ajax({
             type: "POST",
             url: '/createTodo',
-            data: $('#create-new-todo').serialize(),
+            data: data,
         }).done(function (resp) {
             window.location.href = 'listTodo';
         });
@@ -60,6 +64,10 @@ $(document).ready(function () {
         var id = $(this).attr('data');
         var caption = $(this).find("span").text();
         $('#dropdown-goals').attr('data', id);
+
+        if (id === "0") {
+            caption = "";
+        }
         $('.input-dropwown').find('input').val(caption);
     })
 

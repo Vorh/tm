@@ -7,11 +7,13 @@ from src.dao.UserDao import UserDao
 from src.dao.TodoDao import TodoDao
 from src.dao.GoalDao import GoalDao
 from injector import Injector, inject
+from src.dao.UtilsDao import UtilsDao
 
 injector = Injector()
 userDao = injector.get(UserDao)
 todoDao = injector.get(TodoDao)
 goalDao = injector.get(GoalDao)
+utilsDao = injector.get(UtilsDao)
 
 
 @app.route('/')
@@ -74,7 +76,14 @@ def createTodo():
         todo.caption = request.form['caption']
         todo.content = request.form['content']
         todo.userId = 10
+        todo.goalId = request.form['gId']
+        todoId = utilsDao.nextval('todo')
+        todo.id = todoId
         todoDao.insertTodo(todo)
+
+        if todo.goalId != 0:
+            todoDao.insertGoalTodo(todoId, todo.goalId)
+
         return "Ok"
 
 
