@@ -9,6 +9,21 @@
         <input class="name border-red" type="text" name="caption"><br>
         <label>Notes</label><br>
         <textarea class="notes border-red" name="content" form="create-new-todo"></textarea><br>
+        <label>Goal</label><br>
+
+        <div class="dropdown">
+            <div class="input-dropwown">
+                <input type="text">
+                <button type="button" class="dropbtn"><i class="fas fa-arrow-down"></i></button>
+            </div>
+            <div id="dropdown-goals" class="dropdown-content">
+                <div data="0"><span>None</span></div>
+                {% for goal in goals %}
+                <div data="{{goal.id}}"><span>{{goal.caption}}</span></div>
+                {% endfor %}
+            </div>
+        </div>
+        <br>
         <input type="submit" id="sb-create-new-todo" class="btn-create-todo" value="Create todo">
     </form>
 </div>

@@ -51,6 +51,18 @@ $(document).ready(function () {
         parent.find('.goal-todo-list').slideToggle();
     });
 
+
+    $('.dropdown').click(function () {
+        $("#dropdown-goals").toggleClass("show");
+    });
+
+    $('#dropdown-goals').on('click', 'div', function () {
+        var id = $(this).attr('data');
+        var caption = $(this).find("span").text();
+        $('#dropdown-goals').attr('data', id);
+        $('.input-dropwown').find('input').val(caption);
+    })
+
 });
 
 

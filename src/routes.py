@@ -67,7 +67,8 @@ def completeTodo():
 @app.route('/createTodo', methods=['GET', 'POST'])
 def createTodo():
     if request.method == 'GET':
-        return render_template('createTodo.html')
+        goals = goalDao.getListGoal(10)
+        return render_template('createTodo.html', goals=goals)
     else:
         todo = Todo()
         todo.caption = request.form['caption']
