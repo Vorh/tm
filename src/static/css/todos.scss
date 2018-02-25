@@ -15,7 +15,7 @@
       height: 100%;
 
       &.complete {
-        .caption-t {
+        .h-caption {
           text-decoration: line-through;
         }
       }
@@ -35,20 +35,7 @@
     height: 100%;
   }
 
-  .caption-t {
-    font-size: 20px;
-    color: #2a2a2a;
-    font-weight: 500;
-    float: left;
-    width: 100%;
-  }
 
-  .content-t {
-
-    font-size: 16px;
-    color: #757575;
-
-  }
 
   .btn-t-complete {
     padding: 10px 0px 0px 0px;
