@@ -7,18 +7,18 @@
 
     <div class="todo " data="{{todo.id}}">
         <div class="todo-container {{'complete' if todo.complete }}">
-            <div class="box-line">
+            <div class="box-left">
                 <div class="caption-t">{{todo.caption}}</div>
                 <div class="content-t"> {{todo.content}}</div>
+                <div class="date-t">{{todo.date}}</div>
+
+            </div>
+            <div class="box-right">
                 {% if not todo.complete %}
                 <div class="btn-t-complete">
                     <i class="fas fa-check"></i>
                 </div>
                 {% endif %}
-            </div>
-
-            <div class="box-line">
-                <div class="date-t">{{todo.date}}</div>
                 <div class="btn-t-delete">
                     <i class="far fa-trash-alt"></i>
                 </div>

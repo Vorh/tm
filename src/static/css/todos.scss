@@ -1,69 +1,80 @@
 .todos {
   margin: 20px 20px 0 0;
   height: 90%;
+
   overflow-y: auto;
   overflow-x: hidden;
-}
 
-.todo {
-  background: white;
-  margin-bottom: 20px;
-  height: 100px;
-  box-shadow: -2px 4px 20px -6px #777;
-  .todo-container {
-    padding: 15px 20px 5px 20px;
-    height: 100%;
+  .todo {
+    background: white;
+    margin: 0px 10px 20px 0;
+    height: 100px;
+    box-shadow: -2px 4px 20px -6px #777;
+    .todo-container {
+      padding: 15px 20px 5px 20px;
+      height: 100%;
 
-    &.complete {
-      .caption-t {
-        text-decoration: line-through;
+      &.complete {
+        .caption-t {
+          text-decoration: line-through;
+        }
       }
     }
+
+  }
+
+  .box-left {
+    float: left;
+    width: 98%;
+    height: 55px;
+  }
+
+  .box-right {
+    float: right;
+    width: 2%;
+    height: 100%;
+  }
+
+  .caption-t {
+    font-size: 20px;
+    color: #2a2a2a;
+    font-weight: 500;
+    float: left;
+    width: 100%;
+  }
+
+  .content-t {
+
+    font-size: 16px;
+    color: #757575;
+
+  }
+
+  .btn-t-complete {
+    padding: 10px 0px 0px 0px;
+    cursor: pointer;
+    color: #5aff75;
+  }
+
+  .btn-t-delete {
+    padding: 25px 0 0 0;
+    cursor: pointer;
+    color: #ff5252;
+  }
+
+  .date-t {
+    float: left;
+    color: #444445;
+    opacity: 0.6;
+  }
+
+  .separator-todes {
+    background-color: #2a2a2a;
+    height: 1px;
+    opacity: 0.2;
+
   }
 
 }
 
-.box-line {
-  height: 55px;
-}
-
-.caption-t {
-  font-size: 20px;
-  color: #2a2a2a;
-  font-weight: 500;
-  float: left;
-  width: 100%;
-}
-
-.content-t {
-
-  font-size: 16px;
-  color: #757575;
-
-}
-
-.btn-t-complete {
-  float: right;
-  cursor: pointer;
-  color: #5aff75;
-}
-
-.btn-t-delete {
-  float: right;
-  cursor: pointer;
-  color: #ff5252;
-}
-
-.date-t {
-  float: left;
-  color: #444445;
-  opacity: 0.6;
-}
-
-.separator-todes {
-  background-color: #2a2a2a;
-  height: 1px;
-  opacity: 0.2;
-
-}
 
