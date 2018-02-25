@@ -11,14 +11,20 @@ class GoalDao:
     def __init__(self, dataSources: DataSource):
         self.ds = dataSources
 
+    def insertGoal(self, goal: Goal):
+        sql = """INSERT INTO goal (caption, reward, user_id) VALUE
+  ('%s','%s',%s)""" % (goal.caption, goal.reward, goal.user_id)
+        print(sql)
+        self.ds.execute(sql)
+
     def getListGoal(self, userId):
         sql = """
               SELECT g.caption AS gCaption,
               g.id as gId,
-              g.crete_date as gDate,
+              g.create_date as gDate,
               t.*
-              FROM goal g INNER JOIN goal_todo todo ON g.id = todo.goal_id
-              INNER JOIN todo t ON todo.todo_id = t.id
+              FROM goal g LEFT JOIN goal_todo todo ON g.id = todo.goal_id
+              LEFT JOIN todo t ON todo.todo_id = t.id
               where g.user_id = %s
               """ % userId
 

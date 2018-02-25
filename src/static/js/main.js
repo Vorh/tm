@@ -17,6 +17,21 @@ $(document).ready(function () {
     });
 
 
+    $('#create-new-goal').submit(function (e) {
+        e.preventDefault();
+
+        var data = $('#create-new-goal').serialize();
+        $.ajax({
+            type: "POST",
+            url: '/createGoal',
+            data: data,
+        }).done(function (resp) {
+            window.location.href = '/goals';
+        });
+
+    });
+
+
     $('.btn-t-delete').click(function () {
 
         var parent = $(this).closest('.todo');

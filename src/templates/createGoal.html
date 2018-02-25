@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+
+<div class="create-todo">
+    <h1 class="caption">CREATE NEW GOAL</h1><br>
+    <form id="create-new-goal">
+        <label>Name</label><br>
+        <input class="name border-red" type="text" name="caption"><br>
+        <label>Reward</label><br>
+        <input class="name border-red" type="text" name="reward"><br>
+        <input type="submit" id="sb-create-new-goal" class="btn-create-todo" value="Create todo">
+    </form>
+</div>
+
+{% endblock %}

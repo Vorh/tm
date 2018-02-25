@@ -2,6 +2,7 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 import os
 from src import app
 from src.model.Todo import Todo
+from src.model.Goal import Goal
 from src.forms import LoginForm
 from src.dao.UserDao import UserDao
 from src.dao.TodoDao import TodoDao
@@ -84,6 +85,19 @@ def createTodo():
         if todo.goalId != 0:
             todoDao.insertGoalTodo(todoId, todo.goalId)
 
+        return "Ok"
+
+
+@app.route('/createGoal', methods=['GET', 'POST'])
+def createGoal():
+    if request.method == 'GET':
+        return render_template('createGoal.html')
+    else:
+        goal = Goal()
+        goal.caption = request.form['caption']
+        goal.reward = request.form['reward']
+        goal.user_id = 10
+        goalDao.insertGoal(goal)
         return "Ok"
 
 
