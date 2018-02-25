@@ -1,0 +1,39 @@
+$width-dropdown: 150px;
+$border-raidus: 4px;
+#sidebar {
+
+  #dropdown-parent-create {
+    padding: 20px 0 0 20px;
+    .input-dropwown {
+      width: $width-dropdown;
+      background-color: #ff5252;
+      color: white;
+      border-radius: $border-raidus;
+      box-shadow: none;
+
+      div {
+        padding: 10px 0 0 15px;
+        width: 100px;
+        float: left;
+        font-weight: 600;
+      }
+    }
+
+    .dropbtn {
+      color: white;
+      background-color: #ff5252;
+      border: none;
+      outline: none;
+      height: 40px;
+      border-left: 1px solid #585858;
+      width: 40px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+
+    .dropdown-content {
+      width: $width-dropdown;
+    }
+
+  }
+}

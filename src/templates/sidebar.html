@@ -1,5 +1,15 @@
 <div id="sidebar">
-    <div class="combox" onclick="location.href='/createTodo'"><p>New todo</p></div>
+    <div id="dropdown-parent-create" class="dropdown">
+        <div class="input-dropwown">
+            <div>Create new</div>
+            <button type="button" class="dropbtn"><i class="fas fa-arrow-down"></i></button>
+        </div>
+        <div id="dropdown-create" class="dropdown-content">
+            <div onclick="location.href='/createTodo';"><span>Todo</span></div>
+            <div onclick="location.href='/createGoal';"><span>Goal</span></div>
+        </div>
+    </div>
+    <!--<div class="combox" onclick="location.href='/createTodo'"><p>New todo</p></div>-->
     <div class="item" onclick="location.href='/dashboard';"><i class="fas fa-columns"></i> <span>Dashboard</span>
     </div>
     <div class="item" onclick="location.href='/listTodo';"><i class="fas fa-list-ol"></i> <span>Todos</span></div>

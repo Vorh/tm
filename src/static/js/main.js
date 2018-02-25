@@ -56,8 +56,12 @@ $(document).ready(function () {
     });
 
 
-    $('.dropdown').click(function () {
+    $('#dropdown-parent-goal').click(function () {
         $("#dropdown-goals").toggleClass("show");
+    });
+
+    $('#dropdown-parent-create').click(function () {
+        $("#dropdown-create").toggleClass("show");
     });
 
     $('#dropdown-goals').on('click', 'div', function () {
