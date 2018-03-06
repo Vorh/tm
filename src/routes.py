@@ -61,44 +61,10 @@ def completeTodo():
     return 'Ok'
 
 
-@app.route('/createTodo', methods=['GET', 'POST'])
-def createTodo():
-    if request.method == 'GET':
-        goals = goalDao.getListGoal(10)
-        return render_template('createTodo.html', goals=goals)
-    else:
-        todo = Todo()
-        todo.caption = request.form['caption']
-        todo.content = request.form['content']
-        todo.userId = 10
-        todo.goalId = request.form['gId']
-        todoId = utilsDao.nextval('todo')
-        todo.id = todoId
-        todoDao.insertTodo(todo)
-
-        if todo.goalId != 0:
-            todoDao.insertGoalTodo(todoId, todo.goalId)
-
-        return "Ok"
-
-
 @app.route('/todos')
 def getTodos():
     todos = todoDao.getListTodo(10)
     return render_template('items/todos.html', todos=todos)
-
-
-@app.route('/createGoal', methods=['GET', 'POST'])
-def createGoal():
-    if request.method == 'GET':
-        return render_template('createGoal.html')
-    else:
-        goal = Goal()
-        goal.caption = request.form['caption']
-        goal.reward = request.form['reward']
-        goal.user_id = 10
-        goalDao.insertGoal(goal)
-        return "Ok"
 
 
 @app.route('/goals', methods=['GET'])
@@ -115,8 +81,42 @@ def getRewards():
 @app.route('/createReward', methods=['GET', 'POST'])
 def createReward():
     if request.method == 'GET':
-        print('GET')
+        return render_template('create/createReward.html')
     else:
         print('POST')
 
     return 'OK'
+
+
+@app.route('/createTodo', methods=['GET', 'POST'])
+def createTodo():
+    if request.method == 'GET':
+        goals = goalDao.getListGoal(10)
+        return render_template('create/createTodo.html', goals=goals)
+    else:
+        todo = Todo()
+        todo.caption = request.form['caption']
+        todo.content = request.form['content']
+        todo.userId = 10
+        todo.goalId = request.form['gId']
+        todoId = utilsDao.nextval('todo')
+        todo.id = todoId
+        todoDao.insertTodo(todo)
+
+        if todo.goalId != 0:
+            todoDao.insertGoalTodo(todoId, todo.goalId)
+
+        return "Ok"
+
+
+@app.route('/createGoal', methods=['GET', 'POST'])
+def createGoal():
+    if request.method == 'GET':
+        return render_template('create/createGoal.html')
+    else:
+        goal = Goal()
+        goal.caption = request.form['caption']
+        goal.reward = request.form['reward']
+        goal.user_id = 10
+        goalDao.insertGoal(goal)
+        return "Ok"
