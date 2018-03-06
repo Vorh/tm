@@ -25,12 +25,6 @@ def home():
         return render_template('index.html')
 
 
-@app.route('/listTodo')
-def listTodo():
-    todos = todoDao.getListTodo(10)
-    return render_template('listTodo.html', todos=todos)
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     password = request.form['password']
@@ -88,6 +82,12 @@ def createTodo():
         return "Ok"
 
 
+@app.route('/todos')
+def getTodos():
+    todos = todoDao.getListTodo(10)
+    return render_template('items/todos.html', todos=todos)
+
+
 @app.route('/createGoal', methods=['GET', 'POST'])
 def createGoal():
     if request.method == 'GET':
@@ -104,9 +104,19 @@ def createGoal():
 @app.route('/goals', methods=['GET'])
 def getGoals():
     goals = goalDao.getListGoal(10)
-    return render_template('goals.html', goals=goals)
+    return render_template('items/goals.html', goals=goals)
 
 
 @app.route('/rewards', methods=['GET'])
 def getRewards():
-    return render_template('rewards.html')
+    return render_template('items/rewards.html')
+
+
+@app.route('/createReward', methods=['GET', 'POST'])
+def createReward():
+    if request.method == 'GET':
+        print('GET')
+    else:
+        print('POST')
+
+    return 'OK'
