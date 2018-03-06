@@ -105,3 +105,8 @@ def createGoal():
 def getGoals():
     goals = goalDao.getListGoal(10)
     return render_template('goals.html', goals=goals)
+
+
+@app.route('/rewards', methods=['GET'])
+def getRewards():
+    return render_template('rewards.html')
