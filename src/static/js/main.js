@@ -31,6 +31,20 @@ $(document).ready(function () {
 
     });
 
+    $('#create-new-reward').submit(function (e) {
+        e.preventDefault();
+
+        var data = $('#create-new-reward').serialize();
+        $.ajax({
+            type: "POST",
+            url: '/createReward',
+            data: data,
+        }).done(function (resp) {
+            window.location.href = '/rewards';
+        });
+
+    });
+
 
     $('.btn-t-delete').click(function () {
 

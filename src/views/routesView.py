@@ -1,84 +1,42 @@
-from flask import Flask, flash, redirect, render_template, request, session, abort
-import os
+from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
 from src import app
+
 from src.model.Todo import Todo
 from src.model.Goal import Goal
-from src.forms import LoginForm
-from src.dao.UserDao import UserDao
-from src.dao.TodoDao import TodoDao
-from src.dao.GoalDao import GoalDao
-from injector import Injector, inject
-from src.dao.UtilsDao import UtilsDao
 
-injector = Injector()
-userDao = injector.get(UserDao)
-todoDao = injector.get(TodoDao)
-goalDao = injector.get(GoalDao)
-utilsDao = injector.get(UtilsDao)
+route_view = Blueprint('route_view', __name__)
 
 
-@app.route('/')
-def home():
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
-        return render_template('index.html')
-
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    password = request.form['password']
-    login = request.form['username']
-
-    if userDao.isCorrectLogin(login, password):
-        session['logged_in'] = True
-    else:
-        flash('wrong password')
-    return home()
-    # return render_template('login.html', title='Sign In', form=form)
-
-
-@app.route('/logout')
-def logout():
-    session['logged_in'] = False
-    return home()
-
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    return render_template('register.html')
-
-
-@app.route('/deleteTodo', methods=['POST'])
+@route_view.route('/deleteTodo', methods=['POST'])
 def deleteTodo():
     todoDao.deleteTodo(10, request.form['id'])
     return 'Ok'
 
 
-@app.route('/completeTodo', methods=['POST'])
+@route_view.route('/completeTodo', methods=['POST'])
 def completeTodo():
     todoDao.completeTodo(10, request.form['id'])
     return 'Ok'
 
 
-@app.route('/todos')
+@route_view.route('/todos')
 def getTodos():
     todos = todoDao.getListTodo(10)
     return render_template('items/todos.html', todos=todos)
 
 
-@app.route('/goals', methods=['GET'])
+@route_view.route('/goals', methods=['GET'])
 def getGoals():
     goals = goalDao.getListGoal(10)
     return render_template('items/goals.html', goals=goals)
 
 
-@app.route('/rewards', methods=['GET'])
+@route_view.route('/rewards', methods=['GET'])
 def getRewards():
     return render_template('items/rewards.html')
 
 
-@app.route('/createReward', methods=['GET', 'POST'])
+@route_view.route('/createReward', methods=['GET', 'POST'])
 def createReward():
     if request.method == 'GET':
         return render_template('create/createReward.html')
@@ -88,7 +46,7 @@ def createReward():
     return 'OK'
 
 
-@app.route('/createTodo', methods=['GET', 'POST'])
+@route_view.route('/createTodo', methods=['GET', 'POST'])
 def createTodo():
     if request.method == 'GET':
         goals = goalDao.getListGoal(10)
@@ -109,7 +67,7 @@ def createTodo():
         return "Ok"
 
 
-@app.route('/createGoal', methods=['GET', 'POST'])
+@route_view.route('/createGoal', methods=['GET', 'POST'])
 def createGoal():
     if request.method == 'GET':
         return render_template('create/createGoal.html')

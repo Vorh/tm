@@ -7,7 +7,6 @@ from src.model.Todo import Todo
 
 class GoalDao:
 
-    @inject
     def __init__(self, dataSources: DataSource):
         self.ds = dataSources
 
@@ -16,6 +15,8 @@ class GoalDao:
   ('%s','%s',%s)""" % (goal.caption, goal.reward, goal.user_id)
         print(sql)
         self.ds.execute(sql)
+
+        # logger.info('%s Insert goal %s' % (goal.user_id, goal.caption))
 
     def getListGoal(self, userId):
         sql = """
@@ -57,5 +58,6 @@ class GoalDao:
         for goal in goals:
             listGoals.append(goals[goal])
 
-        print('Goals size : %s' % len(listGoals))
+        # logger.debug('%s Get goals , size: %s' % (userId, len(goals)))
+
         return listGoals

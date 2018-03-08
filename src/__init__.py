@@ -1,10 +1,17 @@
-from flask import Flask, Config, request
+from flask import Flask, request
 from config import Config
 import os
-import pymysql
+from src.views.userView import user_view
+from src.views.routesView import route_view
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
+mainDao = DataSource()
+userDao = UserDao(mainDao)
+todoDao = TodoDao(mainDao)
+goalDao = GoalDao(mainDao)
+utilsDao = UtilsDao(mainDao)
 
 
 @app.url_defaults
@@ -25,4 +32,5 @@ def hashed_static_file(endpoint, values):
                 values['_'] = int(os.stat(fp).st_mtime)
 
 
-from src import routes
+app.register_blueprint(user_view)
+app.register_blueprint(route_view)
