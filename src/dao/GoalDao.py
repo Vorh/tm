@@ -1,9 +1,8 @@
 import pymysql
-from injector import inject
 from src.dao.mainDao import DataSource
 from src.model.Goal import Goal
 from src.model.Todo import Todo
-
+from src import app
 
 class GoalDao:
 
@@ -16,7 +15,7 @@ class GoalDao:
         print(sql)
         self.ds.execute(sql)
 
-        # logger.info('%s Insert goal %s' % (goal.user_id, goal.caption))
+        app.logger.info('%s Insert goal %s' % (goal.user_id, goal.caption))
 
     def getListGoal(self, userId):
         sql = """
@@ -58,6 +57,6 @@ class GoalDao:
         for goal in goals:
             listGoals.append(goals[goal])
 
-        # logger.debug('%s Get goals , size: %s' % (userId, len(goals)))
+        app.logger.info('%s Get goals , size: %s' % (userId, len(goals)))
 
         return listGoals

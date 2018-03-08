@@ -1,21 +1,23 @@
 from flask import Flask, request
 from config import Config
 import os
+
+app = Flask(__name__)
+app.config.from_object(Config)
+
+
+
 from src.dao.UserDao import UserDao
 from src.dao.TodoDao import TodoDao
 from src.dao.GoalDao import GoalDao
 from src.dao.UtilsDao import UtilsDao
 from src.dao.mainDao import DataSource
 
-app = Flask(__name__)
-app.config.from_object(Config)
-
 mainDao = DataSource()
 userDao = UserDao(mainDao)
 todoDao = TodoDao(mainDao)
 goalDao = GoalDao(mainDao)
 utilsDao = UtilsDao(mainDao)
-
 
 @app.url_defaults
 def hashed_static_file(endpoint, values):
@@ -40,4 +42,3 @@ from src.views.main.mainView import route_view
 
 app.register_blueprint(user_view)
 app.register_blueprint(route_view)
-
