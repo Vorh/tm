@@ -1,8 +1,11 @@
 from flask import Flask, request
 from config import Config
 import os
-from src.views.userView import user_view
-from src.views.routesView import route_view
+from src.dao.UserDao import UserDao
+from src.dao.TodoDao import TodoDao
+from src.dao.GoalDao import GoalDao
+from src.dao.UtilsDao import UtilsDao
+from src.dao.mainDao import DataSource
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -32,5 +35,9 @@ def hashed_static_file(endpoint, values):
                 values['_'] = int(os.stat(fp).st_mtime)
 
 
+from src.views.user.userView import user_view
+from src.views.main.mainView import route_view
+
 app.register_blueprint(user_view)
 app.register_blueprint(route_view)
+

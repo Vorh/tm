@@ -1,4 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
+from src import userDao
 
 user_view = Blueprint('user_view', __name__)
 

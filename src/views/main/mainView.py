@@ -1,5 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
-from src import app
+from src import todoDao, userDao, goalDao
 
 from src.model.Todo import Todo
 from src.model.Goal import Goal
