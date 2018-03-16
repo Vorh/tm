@@ -1,8 +1,9 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
-from src import todoDao, userDao, goalDao
+from src import todoDao, userDao, goalDao, rewardDao
 
 from src.model.Todo import Todo
 from src.model.Goal import Goal
+from src.model.Reward import Reward
 
 route_view = Blueprint('route_view', __name__)
 
@@ -33,7 +34,8 @@ def getGoals():
 
 @route_view.route('/rewards', methods=['GET'])
 def getRewards():
-    return render_template('items/rewards.html')
+    rewards = rewardDao.getRewards(10)
+    return render_template('items/rewards.html', rewards=rewards)
 
 
 @route_view.route('/createReward', methods=['GET', 'POST'])
@@ -41,7 +43,12 @@ def createReward():
     if request.method == 'GET':
         return render_template('create/createReward.html')
     else:
-        print('POST')
+
+        reward = Reward()
+        reward.caption = request.form['caption']
+        reward.reward = request.form['reward']
+        reward.user_id = 10
+        rewardDao.insertReward(reward)
 
     return 'OK'
 

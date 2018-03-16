@@ -42,6 +42,8 @@ class TodoDao:
         self.ds.execute(sql)
 
     def deleteTodo(self, userId, todoId):
+        sql = "delete from goal_todo where todo_id = %s" % todoId
+        self.ds.execute(sql)
         sql = "delete from todo where id = %s and user_id = %s" % \
               (todoId, userId)
         self.ds.execute(sql)

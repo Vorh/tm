@@ -5,19 +5,20 @@ import os
 app = Flask(__name__)
 app.config.from_object(Config)
 
-
-
 from src.dao.UserDao import UserDao
 from src.dao.TodoDao import TodoDao
 from src.dao.GoalDao import GoalDao
 from src.dao.UtilsDao import UtilsDao
+from src.dao.RewardDao import RewardDao
 from src.dao.mainDao import DataSource
 
 mainDao = DataSource()
 userDao = UserDao(mainDao)
 todoDao = TodoDao(mainDao)
 goalDao = GoalDao(mainDao)
+rewardDao = RewardDao(mainDao)
 utilsDao = UtilsDao(mainDao)
+
 
 @app.url_defaults
 def hashed_static_file(endpoint, values):

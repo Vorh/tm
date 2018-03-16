@@ -3,7 +3,7 @@ CREATE TABLE reward (
   id          INTEGER AUTO_INCREMENT,
   caption     VARCHAR(255),
   reward      VARCHAR(255),
-  create_date TIMESTAMP,
+  create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   user_id     INT,
 
   PRIMARY KEY (id)

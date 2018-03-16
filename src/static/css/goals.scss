@@ -1,83 +1,79 @@
 .goals {
-  margin: 20px 20px 0 0;
-  height: 90%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
 
-.goal {
-  background: white;
-  margin-bottom: 20px;
-  min-height: 100px;
-  margin-right: 10px;
-  box-shadow: -2px 4px 20px -6px #777;
+  .goal {
+    background: white;
+    margin-bottom: 20px;
+    min-height: 100px;
+    margin-right: 10px;
+    box-shadow: -2px 4px 20px -6px #777;
 
-}
+  }
 
-.goal-container {
-  padding: 15px 20px 5px 20px;
-  min-height: 80px;
-  &.complete {
-    .h-caption {
-      text-decoration: line-through;
+  .goal-container {
+    padding: 15px 20px 5px 20px;
+    min-height: 80px;
+    &.complete {
+      .h-caption {
+        text-decoration: line-through;
+      }
     }
   }
-}
 
-.goal-body {
-  float: left;
-  width: 90%;
-}
-
-.goal-panel {
-  float: right;
-  width: 10%;
-  color: #9c9e9c;;
-  font-size: 24px;
-  padding: 20px 10px 10px 70px;
-  cursor: pointer;
-
-  &:hover {
-    color: #2f3b4c;
-  }
-}
-
-.goal-todo-list {
-  background: white;
-  padding-bottom: 15px;
-  display: none;
-
-  .separate-goal {
-    background-color: #2a2a2a;
-    height: 1px;
-    opacity: 0.2;
+  .goal-body {
+    float: left;
+    width: 90%;
   }
 
-  .caption {
-    margin-left: 5px;
-    color: #4c4c4c;
-    font-size: 20px;
-  }
+  .goal-panel {
+    float: right;
+    width: 10%;
+    color: #9c9e9c;;
+    font-size: 24px;
+    padding: 20px 10px 10px 70px;
+    cursor: pointer;
 
-  .goal-todo {
-    width: 100%;
-    padding: 0px 0px 0px 20px;
-    margin-top: 10px;
-
-    .check {
-      color: #31d877;
+    &:hover {
+      color: #2f3b4c;
     }
+  }
 
-    .uncheck {
-      color: #7daef5;
+  .goal-todo-list {
+    background: white;
+    padding-bottom: 15px;
+    display: none;
+
+    .separate-goal {
+      background-color: #2a2a2a;
+      height: 1px;
+      opacity: 0.2;
     }
 
     .caption {
-
+      margin-left: 5px;
+      color: #4c4c4c;
+      font-size: 20px;
     }
 
-    .date {
+    .goal-todo {
+      width: 100%;
+      padding: 0px 0px 0px 20px;
+      margin-top: 10px;
 
+      .check {
+        color: #31d877;
+      }
+
+      .uncheck {
+        color: #7daef5;
+      }
+
+      .caption {
+
+      }
+
+      .date {
+
+      }
     }
   }
 }

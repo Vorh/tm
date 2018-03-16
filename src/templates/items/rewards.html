@@ -1,6 +1,19 @@
 {% extends "index.html" %}
 
 {% block content %}
+<div class="rewards container scroll-bar">
+    {% for reward in rewards %}
+    <div class="reward" data="{{reward.id}}">
+        <div class="reward-container">
+            <div class="reward-body">
+                <span class="h-caption">{{reward.caption}}</span><br>
+                <span class="h-content">  <i class="far fa-clock"></i> {{reward.create_date}}</span>
+            </div>
+            <div class="reward-panel"><i class="fas fa-arrow-down"></i></div>
+        </div>
+    </div>
+    {% endfor %}
 
+</div>
 
 {% endblock %}

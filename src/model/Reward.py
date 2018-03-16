@@ -3,5 +3,4 @@ class Reward:
         self.id = 0
         self.caption = ''
         self.reward = ''
-        self.create_date = datetime
         self.user_id = 0

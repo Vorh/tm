@@ -1,17 +1,15 @@
 {% extends "index.html" %}
 
 {% block content %}
-<div class="todos scroll-bar">
+<div class="todos container scroll-bar">
 
     {% for todo in todos %}
-
-    <div class="todo " data="{{todo.id}}">
+    <div class="todo" data="{{todo.id}}">
         <div class="todo-container {{'complete' if todo.complete }}">
             <div class="box-left">
                 <div class="h-caption">{{todo.caption}}</div>
                 <div class="h-content"> {{todo.content}}</div>
                 <div class="date-t">{{todo.date}}</div>
-
             </div>
             <div class="box-right">
                 {% if not todo.complete %}
