@@ -1,13 +1,6 @@
 .goals {
 
-  .goal {
-    background: white;
-    margin-bottom: 20px;
     min-height: 100px;
-    margin-right: 10px;
-    box-shadow: -2px 4px 20px -6px #777;
-
-  }
 
   .goal-container {
     padding: 15px 20px 5px 20px;
@@ -42,11 +35,6 @@
     padding-bottom: 15px;
     display: none;
 
-    .separate-goal {
-      background-color: #2a2a2a;
-      height: 1px;
-      opacity: 0.2;
-    }
 
     .caption {
       margin-left: 5px;
@@ -65,14 +53,6 @@
 
       .uncheck {
         color: #7daef5;
-      }
-
-      .caption {
-
-      }
-
-      .date {
-
       }
     }
   }

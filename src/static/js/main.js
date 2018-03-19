@@ -48,7 +48,7 @@ $(document).ready(function () {
 
     $('.btn-t-delete').click(function () {
 
-        var parent = $(this).closest('.todo');
+        var parent = $(this).closest('.item');
         var id = parent.attr('data');
 
         $.ajax({
@@ -64,7 +64,7 @@ $(document).ready(function () {
 
 
     $('.btn-t-complete').click(function () {
-        var parent = $(this).closest('.todo');
+        var parent = $(this).closest('.item');
         var id = parent.attr('data');
 
         $.ajax({
@@ -77,7 +77,7 @@ $(document).ready(function () {
     });
 
     $('.goal-panel').click(function () {
-        var parent = $(this).closest('.goal');
+        var parent = $(this).closest('.item');
 
         $(this).find('svg').toggleClass('fa-arrow-down fa-arrow-up');
 

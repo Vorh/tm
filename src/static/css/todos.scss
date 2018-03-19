@@ -1,10 +1,5 @@
 .todos {
 
-  .todo {
-    background: white;
-    margin: 0px 10px 20px 0;
-    height: 100px;
-    box-shadow: -2px 4px 20px -6px #777;
     .todo-container {
       padding: 15px 20px 5px 20px;
       height: 100%;
@@ -15,8 +10,6 @@
         }
       }
     }
-
-  }
 
   .box-left {
     float: left;
@@ -50,12 +43,7 @@
     opacity: 0.6;
   }
 
-  .separator-todes {
-    background-color: #2a2a2a;
-    height: 1px;
-    opacity: 0.2;
 
-  }
 
 }
 
