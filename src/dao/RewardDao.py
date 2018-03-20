@@ -12,7 +12,7 @@ class RewardDao:
 
     def insertReward(self, reward: Reward):
         sql = """insert into reward (caption, reward, user_id) VALUES  
-            (%s, %s ,%s)""" % (reward.caption, reward.reward, reward.user_id)
+            ('%s', '%s' ,%s)""" % (reward.caption, reward.reward, reward.user_id)
         self.ds.execute(sql)
 
     def getRewards(self, userId):

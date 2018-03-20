@@ -1,4 +1,26 @@
 
 .rewards {
 
+  .reward-container {
+    padding: 15px 20px 5px 20px;
+    height: 100px;
+
+    .box-left {
+      float: left;
+      width: 98%;
+    }
+
+    .box-right {
+      float: right;
+      width: 2%;
+      .btn-t-delete {
+        margin-top: 25px;
+        color: #ff5252;
+        cursor: pointer;
+
+      }
+    }
+
+  }
+
 }

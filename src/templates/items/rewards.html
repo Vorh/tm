@@ -2,14 +2,23 @@
 
 {% block content %}
 <div class="rewards container scroll-bar">
+
     {% for reward in rewards %}
     <div class="item" data="{{reward.id}}">
         <div class="reward-container">
+
             <div class="reward-body">
-                <span class="h-caption">{{reward.caption}}</span><br>
-                <span class="h-content">  <i class="far fa-clock"></i> {{reward.create_date}}</span>
+                <div class="box-left">
+                    <span class="h-caption">{{reward.caption}}</span><br>
+                    <span class="h-content">{{reward.reward}}</span><br>
+                    <span class="h-content">  <i class="far fa-clock"></i> {{reward.create_date}}</span>
+                </div>
+                <div class="box-right">
+                    <div class="btn-t-delete">
+                        <i class="far fa-trash-alt"></i>
+                    </div>
+                </div>
             </div>
-            <div class="reward-panel"><i class="fas fa-arrow-down"></i></div>
         </div>
     </div>
     {% endfor %}

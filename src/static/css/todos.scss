@@ -4,16 +4,16 @@
     height: 100px;
   }
 
-    .todo-container {
-      padding: 15px 20px 5px 20px;
-      height: 100%;
+  .todo-container {
+    padding: 15px 20px 5px 20px;
+    height: 100%;
 
-      &.complete {
-        .h-caption {
-          text-decoration: line-through;
-        }
+    &.complete {
+      .h-caption {
+        text-decoration: line-through;
       }
     }
+  }
 
   .box-left {
     float: left;
@@ -26,8 +26,6 @@
     width: 2%;
     height: 100%;
   }
-
-
 
   .btn-t-complete {
     padding: 10px 0px 0px 0px;
@@ -46,8 +44,6 @@
     color: #444445;
     opacity: 0.6;
   }
-
-
 
 }
 
