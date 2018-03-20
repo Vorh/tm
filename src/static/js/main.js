@@ -46,7 +46,7 @@ $(document).ready(function () {
     });
 
 
-    $('.btn-t-delete').click(function () {
+    $('#btn-delete-todo').click(function () {
 
         var parent = $(this).closest('.item');
         var id = parent.attr('data');
@@ -54,6 +54,22 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: '/deleteTodo',
+            data: {id: id}
+        }).done(function (data) {
+            parent.hide('slow', function () {
+                parent.remove();
+            });
+        })
+    });
+
+    $('#btn-delete-reward').click(function () {
+
+        var parent = $(this).closest('.item');
+        var id = parent.attr('data');
+
+        $.ajax({
+            type: "POST",
+            url: '/deleteReward',
             data: {id: id}
         }).done(function (data) {
             parent.hide('slow', function () {

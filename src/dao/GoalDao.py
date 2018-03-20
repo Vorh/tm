@@ -4,6 +4,7 @@ from src.model.Goal import Goal
 from src.model.Todo import Todo
 from src import app
 
+
 class GoalDao:
 
     def __init__(self, dataSources: DataSource):

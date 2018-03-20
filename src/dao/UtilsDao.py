@@ -1,10 +1,8 @@
 from src.dao.mainDao import DataSource
-from injector import inject
 
 
 class UtilsDao:
 
-    @inject
     def __init__(self, dataSource: DataSource):
         self.ds = dataSource
 

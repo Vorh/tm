@@ -1,12 +1,10 @@
 import pymysql
-from injector import inject
 from src.dao.mainDao import DataSource
 from src.model.Todo import Todo
 
 
 class TodoDao:
 
-    @inject
     def __init__(self, dataSource: DataSource):
         self.ds = dataSource
 

@@ -1,12 +1,11 @@
 import pymysql
-from injector import inject
 from src.dao.mainDao import DataSource
 from src.model.Reward import Reward
+from src import app
 
 
 class RewardDao:
 
-    @inject
     def __init__(self, dataSources: DataSource):
         self.ds = dataSources
 
@@ -31,3 +30,10 @@ class RewardDao:
             rewards.append(reward)
 
         return rewards
+
+    def deleteReward(self, rewardId, userId):
+        app.logger.info('%s Delete reward %s' % (userId, rewardId))
+        sql = "delete from reward where user_id = %s and id = %s" % \
+              (userId, rewardId)
+
+        self.ds.execute(sql)

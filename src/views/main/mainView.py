@@ -20,6 +20,27 @@ def completeTodo():
     return 'Ok'
 
 
+@route_view.route('/createTodo', methods=['GET', 'POST'])
+def createTodo():
+    if request.method == 'GET':
+        goals = goalDao.getListGoal(10)
+        return render_template('create/createTodo.html', goals=goals)
+    else:
+        todo = Todo()
+        todo.caption = request.form['caption']
+        todo.content = request.form['content']
+        todo.userId = 10
+        todo.goalId = request.form['gId']
+        todoId = utilsDao.nextval('todo')
+        todo.id = todoId
+        todoDao.insertTodo(todo)
+
+        if todo.goalId != 0:
+            todoDao.insertGoalTodo(todoId, todo.goalId)
+
+        return "Ok"
+
+
 @route_view.route('/todos')
 def getTodos():
     todos = todoDao.getListTodo(10)
@@ -30,6 +51,19 @@ def getTodos():
 def getGoals():
     goals = goalDao.getListGoal(10)
     return render_template('items/goals.html', goals=goals)
+
+
+@route_view.route('/createGoal', methods=['GET', 'POST'])
+def createGoal():
+    if request.method == 'GET':
+        return render_template('create/createGoal.html')
+    else:
+        goal = Goal()
+        goal.caption = request.form['caption']
+        goal.reward = request.form['reward']
+        goal.user_id = 10
+        goalDao.insertGoal(goal)
+        return "Ok"
 
 
 @route_view.route('/rewards', methods=['GET'])
@@ -53,35 +87,7 @@ def createReward():
     return 'OK'
 
 
-@route_view.route('/createTodo', methods=['GET', 'POST'])
-def createTodo():
-    if request.method == 'GET':
-        goals = goalDao.getListGoal(10)
-        return render_template('create/createTodo.html', goals=goals)
-    else:
-        todo = Todo()
-        todo.caption = request.form['caption']
-        todo.content = request.form['content']
-        todo.userId = 10
-        todo.goalId = request.form['gId']
-        todoId = utilsDao.nextval('todo')
-        todo.id = todoId
-        todoDao.insertTodo(todo)
-
-        if todo.goalId != 0:
-            todoDao.insertGoalTodo(todoId, todo.goalId)
-
-        return "Ok"
-
-
-@route_view.route('/createGoal', methods=['GET', 'POST'])
-def createGoal():
-    if request.method == 'GET':
-        return render_template('create/createGoal.html')
-    else:
-        goal = Goal()
-        goal.caption = request.form['caption']
-        goal.reward = request.form['reward']
-        goal.user_id = 10
-        goalDao.insertGoal(goal)
-        return "Ok"
+@route_view.route('/deleteReward', methods=['POST'])
+def deleteReward():
+    rewardDao.deleteReward(10, request.form['id'])
+    return 'Ok'

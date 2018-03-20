@@ -1,11 +1,9 @@
 import pymysql
-from injector import inject
 from src.dao.mainDao import DataSource
 
 
 class UserDao:
 
-    @inject
     def __init__(self, ds: DataSource):
         print('Init UserDao')
         self.ds = ds.con
