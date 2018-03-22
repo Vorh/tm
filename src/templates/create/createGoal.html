@@ -10,7 +10,21 @@
         <input class="name border-red" type="text" name="caption"><br>
         <label>Reward</label><br>
         <input class="name border-red" type="text" name="reward"><br>
-        <input type="submit" id="sb-create-new-goal" class="btn-create" value="Create todo">
+
+        <div id="dropdown-parent-reward" class="dropdown">
+            <div class="input-dropwown">
+                <input type="text">
+                <button type="button" class="dropbtn"><i class="fas fa-arrow-down"></i></button>
+            </div>
+            <div id="dropdown-rewards" class="dropdown-content">
+                <div data="0"><span>None</span></div>
+                {% for reward in rewards %}
+                <div data="{{reward.id}}"><span>{{reward.caption}}</span></div>
+                {% endfor %}
+            </div>
+            <br>
+            <input type="submit" id="sb-create-new-goal" class="btn-create" value="Create todo">
+        </div>
     </form>
 </div>
 

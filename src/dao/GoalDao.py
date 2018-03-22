@@ -13,7 +13,6 @@ class GoalDao:
     def insertGoal(self, goal: Goal):
         sql = """INSERT INTO goal (caption, reward, user_id) VALUE
   ('%s','%s',%s)""" % (goal.caption, goal.reward, goal.user_id)
-        print(sql)
         self.ds.execute(sql)
 
         app.logger.info('%s Insert goal %s' % (goal.user_id, goal.caption))

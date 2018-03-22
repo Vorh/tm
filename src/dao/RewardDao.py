@@ -31,9 +31,11 @@ class RewardDao:
 
         return rewards
 
-    def deleteReward(self, rewardId, userId):
-        app.logger.info('%s Delete reward %s' % (userId, rewardId))
+    def deleteReward(self, userId, rewardId):
+
         sql = "delete from reward where user_id = %s and id = %s" % \
               (userId, rewardId)
 
         self.ds.execute(sql)
+
+        app.logger.info('%s Delete reward %s' % (userId, rewardId))

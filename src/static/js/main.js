@@ -21,6 +21,8 @@ $(document).ready(function () {
         e.preventDefault();
 
         var data = $('#create-new-goal').serialize();
+        var rewardId = $('#dropdown-rewards').attr('data');
+        data = data + "&rewardId=" + rewardId;
         $.ajax({
             type: "POST",
             url: '/createGoal',
@@ -46,7 +48,7 @@ $(document).ready(function () {
     });
 
 
-    $('#btn-delete-todo').click(function () {
+    $('.btn-delete-todo').click(function () {
 
         var parent = $(this).closest('.item');
         var id = parent.attr('data');
@@ -62,7 +64,7 @@ $(document).ready(function () {
         })
     });
 
-    $('#btn-delete-reward').click(function () {
+    $('.btn-delete-reward').click(function () {
 
         var parent = $(this).closest('.item');
         var id = parent.attr('data');
@@ -105,6 +107,10 @@ $(document).ready(function () {
         $("#dropdown-goals").toggleClass("show");
     });
 
+    $('#dropdown-parent-reward').click(function () {
+        $("#dropdown-rewards").toggleClass("show");
+    });
+
     $('#dropdown-parent-create').click(function () {
         $("#dropdown-create").toggleClass("show");
     });
@@ -113,6 +119,18 @@ $(document).ready(function () {
         var id = $(this).attr('data');
         var caption = $(this).find("span").text();
         $('#dropdown-goals').attr('data', id);
+
+        if (id === "0") {
+            caption = "";
+        }
+        $('.input-dropwown').find('input').val(caption);
+    })
+
+
+    $('#dropdown-rewards').on('click', 'div', function () {
+        var id = $(this).attr('data');
+        var caption = $(this).find("span").text();
+        $('#dropdown-rewards').attr('data', id);
 
         if (id === "0") {
             caption = "";

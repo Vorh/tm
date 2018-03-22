@@ -56,12 +56,13 @@ def getGoals():
 @route_view.route('/createGoal', methods=['GET', 'POST'])
 def createGoal():
     if request.method == 'GET':
-        return render_template('create/createGoal.html')
+        rewards = rewardDao.getRewards(10)
+        return render_template('create/createGoal.html', rewards=rewards)
     else:
         goal = Goal()
         goal.caption = request.form['caption']
-        goal.reward = request.form['reward']
         goal.user_id = 10
+        goal.reward = request.form['rewardId']
         goalDao.insertGoal(goal)
         return "Ok"
 
