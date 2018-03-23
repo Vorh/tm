@@ -14,7 +14,6 @@ class DataSource:
         self.con.commit()
 
     def execute(self, sql):
-        # print(sql)
         cur = self.con.cursor(pymysql.cursors.DictCursor)
         cur.execute(sql)
         self.con.commit()

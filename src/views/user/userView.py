@@ -19,6 +19,8 @@ def login():
 
     if userDao.isCorrectLogin(login, password):
         session['logged_in'] = True
+        print(userDao.getUserId(login, password))
+        session['userId'] = True
     else:
         flash('wrong password')
     return home()

@@ -6,17 +6,23 @@ class UserDao:
 
     def __init__(self, ds: DataSource):
         print('Init UserDao')
-        self.ds = ds.con
+        self.ds = ds
 
     def isExistUser(self, name):
-        db_cursor = self.ds.cursor()
         sql = "select count(*) from users where username = '%s'" % name
-        db_cursor.execute(sql)
-        return db_cursor.fetchone()[0] == 1
+        cur = self.ds.execute(sql)
+        return cur.fetchone()[0] == 1
+
+    def getUserId(self, name, password):
+        sql = "select id from users where username = '%s' and password = '%s'" % \
+              (name, password)
+
+        cur = self.ds.execute(sql)
+
+        return cur.fetchone()['id']
 
     def isCorrectLogin(self, name, password):
-        db_cursor = self.ds.cursor()
         sql = "select count(*) from users where username = '%s' and password = '%s'" % \
               (name, password)
-        db_cursor.execute(sql)
-        return db_cursor.fetchone()[0] == 1
+        cur = self.ds.execute(sql)
+        return cur.fetchone()['count(*)'] == 1
