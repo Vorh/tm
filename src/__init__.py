@@ -1,9 +1,11 @@
 from flask import Flask, request
 from config import Config
+from flask_login import LoginManager
 import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
+login = LoginManager(app)
 
 from src.dao.UserDao import UserDao
 from src.dao.TodoDao import TodoDao
