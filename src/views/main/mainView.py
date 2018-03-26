@@ -1,6 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
 from flask_login import login_required, current_user
-from src import todoDao, userDao, goalDao, rewardDao
+from src import todoDao, userDao, goalDao, rewardDao, utilsDao
 
 from src.model.Todo import Todo
 from src.model.Goal import Goal
@@ -11,26 +11,26 @@ route_view = Blueprint('route_view', __name__)
 
 @route_view.route('/deleteTodo', methods=['POST'])
 def deleteTodo():
-    todoDao.deleteTodo(10, request.form['id'])
+    todoDao.deleteTodo(current_user.id, request.form['id'])
     return 'Ok'
 
 
 @route_view.route('/completeTodo', methods=['POST'])
 def completeTodo():
-    todoDao.completeTodo(10, request.form['id'])
+    todoDao.completeTodo(current_user.id, request.form['id'])
     return 'Ok'
 
 
 @route_view.route('/createTodo', methods=['GET', 'POST'])
 def createTodo():
     if request.method == 'GET':
-        goals = goalDao.getListGoal(10)
+        goals = goalDao.getListGoal(current_user.id)
         return render_template('create/createTodo.html', goals=goals)
     else:
         todo = Todo()
         todo.caption = request.form['caption']
         todo.content = request.form['content']
-        todo.userId = 10
+        todo.userId = current_user.id
         todo.goalId = request.form['gId']
         todoId = utilsDao.nextval('todo')
         todo.id = todoId
@@ -45,7 +45,7 @@ def createTodo():
 @route_view.route('/todos')
 @login_required
 def getTodos():
-    todos = todoDao.getListTodo(10)
+    todos = todoDao.getListTodo(current_user.id)
     return render_template('items/todos.html', todos=todos)
 
 
@@ -56,19 +56,19 @@ def index():
 
 @route_view.route('/goals', methods=['GET'])
 def getGoals():
-    goals = goalDao.getListGoal(10)
+    goals = goalDao.getListGoal(current_user.id)
     return render_template('items/goals.html', goals=goals)
 
 
 @route_view.route('/createGoal', methods=['GET', 'POST'])
 def createGoal():
     if request.method == 'GET':
-        rewards = rewardDao.getRewards(10)
+        rewards = rewardDao.getRewards(current_user.id)
         return render_template('create/createGoal.html', rewards=rewards)
     else:
         goal = Goal()
         goal.caption = request.form['caption']
-        goal.user_id = 10
+        goal.user_id = current_user.id
         goal.reward = request.form['rewardId']
         goalDao.insertGoal(goal)
         return "Ok"
@@ -76,7 +76,7 @@ def createGoal():
 
 @route_view.route('/rewards', methods=['GET'])
 def getRewards():
-    rewards = rewardDao.getRewards(10)
+    rewards = rewardDao.getRewards(current_user.id)
     return render_template('items/rewards.html', rewards=rewards)
 
 
@@ -89,7 +89,7 @@ def createReward():
         reward = Reward()
         reward.caption = request.form['caption']
         reward.reward = request.form['reward']
-        reward.user_id = 10
+        reward.user_id = current_user.id
         rewardDao.insertReward(reward)
 
     return 'OK'
@@ -97,5 +97,5 @@ def createReward():
 
 @route_view.route('/deleteReward', methods=['POST'])
 def deleteReward():
-    rewardDao.deleteReward(10, request.form['id'])
+    rewardDao.deleteReward(current_user.id, request.form['id'])
     return 'Ok'

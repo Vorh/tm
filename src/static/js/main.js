@@ -11,7 +11,7 @@ $(document).ready(function () {
             url: '/createTodo',
             data: data,
         }).done(function (resp) {
-            window.location.href = 'listTodo';
+            window.location.href = '/todos';
         });
 
     });
