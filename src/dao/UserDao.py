@@ -1,5 +1,6 @@
 import pymysql
 from src.dao.mainDao import DataSource
+from src.model.User import User
 
 
 class UserDao:
@@ -13,13 +14,20 @@ class UserDao:
         cur = self.ds.execute(sql)
         return cur.fetchone()[0] == 1
 
-    def getUserId(self, name, password):
-        sql = "select id from users where username = '%s' and password = '%s'" % \
+    def getUser(self, name, password):
+        sql = "select * from users where username = '%s' and password = '%s'" % \
               (name, password)
 
         cur = self.ds.execute(sql)
 
-        return cur.fetchone()['id']
+        return User(10, 'Test', 'Test')
+
+    def getUserById(self, userId):
+        sql = "select * from users where id = '%s'" % userId
+
+        self.ds.execute(sql)
+
+        return User(10, 'Test', 'Test')
 
     def isCorrectLogin(self, name, password):
         sql = "select count(*) from users where username = '%s' and password = '%s'" % \

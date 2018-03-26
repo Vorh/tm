@@ -3,9 +3,6 @@
 {% block main %}
 
 <div class="wrapper center">
-    {% if session['logged_in'] %}
-    <p>You're logged in already!</p>
-    {% else %}
     <h2>Login</h2>
     <p>Please fill in your credentials to login.</p>
     <form action="/login" method="post">
@@ -24,7 +21,6 @@
         </div>
         <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
     </form>
-    {% endif %}
 </div>
 {% endblock %}
 

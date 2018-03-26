@@ -1,4 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
+from flask_login import login_required, current_user
 from src import todoDao, userDao, goalDao, rewardDao
 
 from src.model.Todo import Todo
@@ -42,9 +43,15 @@ def createTodo():
 
 
 @route_view.route('/todos')
+@login_required
 def getTodos():
     todos = todoDao.getListTodo(10)
     return render_template('items/todos.html', todos=todos)
+
+
+@route_view.route('/index')
+def index():
+    return getTodos()
 
 
 @route_view.route('/goals', methods=['GET'])

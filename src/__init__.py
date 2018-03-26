@@ -5,7 +5,9 @@ import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
-login = LoginManager(app)
+loginManager = LoginManager(app)
+loginManager.init_app(app)
+loginManager.login_view = 'user_view.login'
 
 from src.dao.UserDao import UserDao
 from src.dao.TodoDao import TodoDao
@@ -39,6 +41,10 @@ def hashed_static_file(endpoint, values):
             if os.path.exists(fp):
                 values['_'] = int(os.stat(fp).st_mtime)
 
+
+@loginManager.user_loader
+def load_user(id):
+    return userDao.getUserById(id)
 
 from src.views.user.userView import user_view
 from src.views.main.mainView import route_view
