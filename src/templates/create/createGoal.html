@@ -7,14 +7,18 @@
     <h1 class="caption">CREATE NEW GOAL</h1><br>
     <form id="create-new-goal">
         <label>Name</label><br>
-        <input class="name border-red" type="text" name="caption"><br>
+        <span id="textErrorCaption" style="color:red;display: none">This field is required</span>
+        <input class="name border-red" type="text" name="caption">
+        <i id="imageErrorCaption" class="fas fa-exclamation-circle" style="color:red; display: none"></i>
+        <br>
         <label>Reward</label><br>
-        <input class="name border-red" type="text" name="reward"><br>
+        <span id="rewardError" style="color:red;display: none">This field is required</span>
 
         <div id="dropdown-parent-reward" class="dropdown">
             <div class="input-dropwown">
                 <input type="text">
-                <button type="button" class="dropbtn"><i class="fas fa-arrow-down"></i></button>
+                <button id="btn-dropdown-reward" type="button" class="dropbtn"><i class="fas fa-arrow-down"></i>
+                </button>
             </div>
             <div id="dropdown-rewards" class="dropdown-content">
                 <div data="0"><span>None</span></div>

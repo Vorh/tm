@@ -73,10 +73,28 @@ def createGoal():
         rewards = rewardDao.getRewards(current_user.id)
         return render_template('create/createGoal.html', rewards=rewards)
     else:
+
+        caption = request.form['caption']
+        rewardId = request.form['rewardId']
+
+        captionError = False
+        rewardError = False
+        if not caption:
+            captionError = True
+        if rewardId == 0:
+            rewardError = True
+
+        if captionError | rewardError:
+            return json.dumps({'captionError': captionError, 'rewardError': rewardError})
+
+        if not rewardDao.userIsOwnReward(current_user.id, rewardId):
+            return json.dump('userOwnError', True)
+
+
         goal = Goal()
-        goal.caption = request.form['caption']
+        goal.caption = caption
         goal.user_id = current_user.id
-        goal.reward = request.form['rewardId']
+        goal.reward = rewardId
         goalDao.insertGoal(goal)
         return "Ok"
 
@@ -107,7 +125,6 @@ def createReward():
 
         if captionError | rewardError:
             return json.dumps({'captionError': captionError, 'rewardError': rewardError})
-
 
 
         reward = Reward()

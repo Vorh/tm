@@ -14,6 +14,13 @@ class RewardDao:
             ('%s', '%s' ,%s)""" % (reward.caption, reward.reward, reward.user_id)
         self.ds.execute(sql)
 
+    def userIsOwnReward(self, userId, rewardId):
+        sql = """select count(*) from reward where user_id = '%s' and id = '%s'""" % \
+              (userId, rewardId)
+
+        return self.ds.execute(sql).fetchone() >= 1
+
+
     def getRewards(self, userId):
         sql = "select * from reward where user_id = %s" % userId
 

@@ -28,7 +28,21 @@ $(document).ready(function () {
             url: '/createGoal',
             data: data,
         }).done(function (resp) {
-            window.location.href = '/goals';
+            if (resp !== 'OK') {
+                var res = JSON.parse(resp);
+
+                if (res.captionError === true) {
+                    $('#imageErrorCaption').show();
+                    $('#textErrorCaption').show();
+                }
+
+                if (res.rewardError === true) {
+                    $('#rewardError').show();
+                }
+
+            } else {
+                window.location.href = '/goals';
+            }
         });
 
     });
@@ -120,9 +134,10 @@ $(document).ready(function () {
         $("#dropdown-goals").toggleClass("show");
     });
 
-    $('#dropdown-parent-reward').click(function () {
+    $('#btn-dropdown-reward').click(function () {
         $("#dropdown-rewards").toggleClass("show");
     });
+
 
     $('#dropdown-parent-create').click(function () {
         $("#dropdown-create").toggleClass("show");
@@ -149,7 +164,13 @@ $(document).ready(function () {
             caption = "";
         }
         $('.input-dropwown').find('input').val(caption);
-    })
+        $('#dropdown-rewards').hide();
+
+    });
+
+    //   $('#dropdown-parent-reward').focusout(function () {
+    //     $("#dropdown-rewards").toggleClass("show");
+    // });
 
 });
 
