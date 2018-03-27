@@ -42,7 +42,20 @@ $(document).ready(function () {
             url: '/createReward',
             data: data,
         }).done(function (resp) {
-            window.location.href = '/rewards';
+            if (resp !== 'OK') {
+                var res = JSON.parse(resp);
+
+                if (res.captionError === true) {
+                    $('#imageErrorCaption').show();
+                    $('#textErrorCaption').show();
+                }
+                if (res.rewardError === true) {
+                    $('#imageErrorReward').show();
+                    $('#textErrorReward').show();
+                }
+            } else {
+                window.location.href = '/rewards';
+            }
         });
 
     });

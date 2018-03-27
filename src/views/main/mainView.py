@@ -1,6 +1,7 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
 from flask_login import login_required, current_user
 from src import todoDao, userDao, goalDao, rewardDao, utilsDao
+import json
 
 from src.model.Todo import Todo
 from src.model.Goal import Goal
@@ -10,18 +11,21 @@ route_view = Blueprint('route_view', __name__)
 
 
 @route_view.route('/deleteTodo', methods=['POST'])
+@login_required
 def deleteTodo():
     todoDao.deleteTodo(current_user.id, request.form['id'])
     return 'Ok'
 
 
 @route_view.route('/completeTodo', methods=['POST'])
+@login_required
 def completeTodo():
     todoDao.completeTodo(current_user.id, request.form['id'])
     return 'Ok'
 
 
 @route_view.route('/createTodo', methods=['GET', 'POST'])
+@login_required
 def createTodo():
     if request.method == 'GET':
         goals = goalDao.getListGoal(current_user.id)
@@ -50,17 +54,20 @@ def getTodos():
 
 
 @route_view.route('/index')
+@login_required
 def index():
     return getTodos()
 
 
 @route_view.route('/goals', methods=['GET'])
+@login_required
 def getGoals():
     goals = goalDao.getListGoal(current_user.id)
     return render_template('items/goals.html', goals=goals)
 
 
 @route_view.route('/createGoal', methods=['GET', 'POST'])
+@login_required
 def createGoal():
     if request.method == 'GET':
         rewards = rewardDao.getRewards(current_user.id)
@@ -75,16 +82,33 @@ def createGoal():
 
 
 @route_view.route('/rewards', methods=['GET'])
+@login_required
 def getRewards():
     rewards = rewardDao.getRewards(current_user.id)
     return render_template('items/rewards.html', rewards=rewards)
 
 
 @route_view.route('/createReward', methods=['GET', 'POST'])
+@login_required
 def createReward():
     if request.method == 'GET':
         return render_template('create/createReward.html')
     else:
+
+        caption = request.form['caption']
+        reward = request.form['reward']
+
+        captionError = False
+        rewardError = False
+        if not caption:
+            captionError = True
+        if not reward:
+            rewardError = True
+
+        if captionError | rewardError:
+            return json.dumps({'captionError': captionError, 'rewardError': rewardError})
+
+
 
         reward = Reward()
         reward.caption = request.form['caption']
@@ -96,6 +120,7 @@ def createReward():
 
 
 @route_view.route('/deleteReward', methods=['POST'])
+@login_required
 def deleteReward():
     rewardDao.deleteReward(current_user.id, request.form['id'])
     return 'Ok'

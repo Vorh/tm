@@ -7,9 +7,17 @@
     <h1 class="caption">CREATE NEW REWARD</h1><br>
     <form id="create-new-reward">
         <label>Name</label><br>
-        <input class="name border-red" type="text" name="caption"><br>
+
+        <span id="textErrorCaption" style="color:red; display: none">This field is required</span>
+        <input class="name border-red" type="text" name="caption">
+        <i id="imageErrorCaption" class="fas fa-exclamation-circle" style="color:red; display: none"></i>
+        <br>
         <label>Reward</label><br>
-        <input class="name border-red" type="text" name="reward"><br>
+
+        <span id="textErrorReward" style="color:red;display: none">This field is required</span>
+        <input class="name border-red" type="text" name="reward">
+        <i id="imageErrorReward" class="fas fa-exclamation-circle" style="color:red; display: none"></i>
+        <br>
         <input type="submit" id="sb-create-new-reward" class="btn-create" value="Create reward">
 
 
