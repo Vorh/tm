@@ -14,21 +14,15 @@
         <label>Reward</label><br>
         <span id="rewardError" style="color:red;display: none">This field is required</span>
 
-        <div id="dropdown-parent-reward" class="dropdown">
-            <div class="input-dropwown">
-                <input type="text">
-                <button id="btn-dropdown-reward" type="button" class="dropbtn"><i class="fas fa-arrow-down"></i>
-                </button>
-            </div>
-            <div id="dropdown-rewards" class="dropdown-content">
-                <div data="0"><span>None</span></div>
-                {% for reward in rewards %}
-                <div data="{{reward.id}}"><span>{{reward.caption}}</span></div>
-                {% endfor %}
-            </div>
-            <br>
-            <input type="submit" id="sb-create-new-goal" class="btn-create" value="Create todo">
-        </div>
+        <select id="select-menu-rewards">
+            <option value="hide">-- Rewards --</option>
+            {% for reward in rewards %}
+            <option value="{{reward.id}}">{{reward.caption}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" id="sb-create-new-goal" class="btn-create" value="Create todo">
+
     </form>
 </div>
 

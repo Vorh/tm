@@ -90,13 +90,12 @@ def createGoal():
         if not rewardDao.userIsOwnReward(current_user.id, rewardId):
             return json.dump('userOwnError', True)
 
-
         goal = Goal()
         goal.caption = caption
         goal.user_id = current_user.id
         goal.reward = rewardId
         goalDao.insertGoal(goal)
-        return "Ok"
+        return "OK"
 
 
 @route_view.route('/rewards', methods=['GET'])
@@ -125,7 +124,6 @@ def createReward():
 
         if captionError | rewardError:
             return json.dumps({'captionError': captionError, 'rewardError': rewardError})
-
 
         reward = Reward()
         reward.caption = request.form['caption']

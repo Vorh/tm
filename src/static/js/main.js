@@ -21,7 +21,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var data = $('#create-new-goal').serialize();
-        var rewardId = $('#dropdown-rewards').attr('data');
+        var rewardId = $('#select-menu-rewards').attr('data');
         data = data + "&rewardId=" + rewardId;
         $.ajax({
             type: "POST",
@@ -152,25 +152,10 @@ $(document).ready(function () {
             caption = "";
         }
         $('.input-dropwown').find('input').val(caption);
-    })
-
-
-    $('#dropdown-rewards').on('click', 'div', function () {
-        var id = $(this).attr('data');
-        var caption = $(this).find("span").text();
-        $('#dropdown-rewards').attr('data', id);
-
-        if (id === "0") {
-            caption = "";
-        }
-        $('.input-dropwown').find('input').val(caption);
-        $('#dropdown-rewards').hide();
-
     });
 
-    //   $('#dropdown-parent-reward').focusout(function () {
-    //     $("#dropdown-rewards").toggleClass("show");
-    // });
+
+
 
 });
 

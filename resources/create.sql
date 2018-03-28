@@ -18,3 +18,6 @@ CREATE TABLE goal (
   reward      INT                                 NULL,
   FOREIGN KEY (reward) REFERENCES reward (id)
 )
+
+
+# root root

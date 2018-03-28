@@ -15,11 +15,10 @@ class RewardDao:
         self.ds.execute(sql)
 
     def userIsOwnReward(self, userId, rewardId):
-        sql = """select count(*) from reward where user_id = '%s' and id = '%s'""" % \
+        sql = """select count(*) as c from reward where user_id = '%s' and id = '%s'""" % \
               (userId, rewardId)
 
-        return self.ds.execute(sql).fetchone() >= 1
-
+        return self.ds.execute(sql).fetchone()['c'] >= 1
 
     def getRewards(self, userId):
         sql = "select * from reward where user_id = %s" % userId
@@ -39,7 +38,6 @@ class RewardDao:
         return rewards
 
     def deleteReward(self, userId, rewardId):
-
         sql = "delete from reward where user_id = %s and id = %s" % \
               (userId, rewardId)
 
