@@ -22,6 +22,10 @@ $(document).ready(function () {
 
         var data = $('#create-new-goal').serialize();
         var rewardId = $('#select-menu-rewards').attr('data');
+
+        if (rewardId === undefined) {
+            rewardId = 0;
+        }
         data = data + "&rewardId=" + rewardId;
         $.ajax({
             type: "POST",
@@ -96,6 +100,8 @@ $(document).ready(function () {
         var parent = $(this).closest('.item');
         var id = parent.attr('data');
 
+        showModal('test', 40, 50);
+
         $.ajax({
             type: "POST",
             url: '/deleteReward',
@@ -155,7 +161,43 @@ $(document).ready(function () {
     });
 
 
+    function showModal(caption, width, height) {
 
+
+        m = document.createElement('div');
+
+        $(m).addClass('modal');
+
+        mc = document.createElement('div');
+        $(mc).addClass('modal-content');
+        $(mc).css({'width': width + '%', 'height': height + '%'});
+
+        c = document.createElement('span');
+        $(c).addClass('close');
+        $(c).text('&times');
+
+
+        p = document.createElement('p');
+        $(p).text(caption);
+
+        mc.appendChild(c);
+        mc.appendChild(p);
+        m.appendChild(mc);
+
+        $(c).click(function () {
+            mc.remove();
+        });
+
+        window.onclick = function (event) {
+            if (event.target !== mc) {
+                mc.remove();
+            }
+        };
+
+        document.body.appendChild(m);
+
+        $(m).show();
+    }
 
 });
 

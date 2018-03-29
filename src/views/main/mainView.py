@@ -81,14 +81,14 @@ def createGoal():
         rewardError = False
         if not caption:
             captionError = True
-        if rewardId == 0:
+        if int(rewardId) == 0:
             rewardError = True
 
         if captionError | rewardError:
             return json.dumps({'captionError': captionError, 'rewardError': rewardError})
 
         if not rewardDao.userIsOwnReward(current_user.id, rewardId):
-            return json.dump('userOwnError', True)
+            return json.dumps({'userOwnError': True})
 
         goal = Goal()
         goal.caption = caption
