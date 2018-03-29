@@ -100,7 +100,7 @@ $(document).ready(function () {
         var parent = $(this).closest('.item');
         var id = parent.attr('data');
 
-        showModal('test', 40, 50);
+        showModal('test');
 
         $.ajax({
             type: "POST",
@@ -170,11 +170,11 @@ $(document).ready(function () {
 
         mc = document.createElement('div');
         $(mc).addClass('modal-content');
-        $(mc).css({'width': width + '%', 'height': height + '%'});
+        // $(mc).css({'width': width, 'height': height});
 
         c = document.createElement('span');
         $(c).addClass('close');
-        $(c).text('&times');
+        $(c).html('&times;');
 
 
         p = document.createElement('p');
@@ -185,12 +185,13 @@ $(document).ready(function () {
         m.appendChild(mc);
 
         $(c).click(function () {
-            mc.remove();
+            m.remove();
         });
 
+
         window.onclick = function (event) {
-            if (event.target !== mc) {
-                mc.remove();
+            if (event.target == m) {
+                $(m).remove();
             }
         };
 
