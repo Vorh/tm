@@ -17,15 +17,19 @@ class TodoDao:
 
         todos = []
         for row in result:
-            todo = Todo()
-            todo.id = row['id']
-            todo.content = row['content']
-            todo.caption = row['caption']
-            todo.complete = row['complete']
-            todo.date = row['date']
-            todos.append(todo)
+            todos.append(TodoDao.todoRowMapper(row))
 
-        print('Todos size: %s' % len(todos))
+        return todos
+
+    def getListByGoals(self, goalIds):
+        sql = """select t.*,gt.goal_id as gId from todo t INNER JOIN goal_todo gt on t.id = gt.todo_id
+where goal_id in (%s);"""
+
+        todos = []
+        for row in self.ds.executeArg(sql, (goalIds,)).fetchall():
+            todo = TodoDao.todoRowMapper(row)
+            todo.goalId = row['gId']
+            todos.append(todo)
 
         return todos
 
@@ -50,3 +54,14 @@ class TodoDao:
         sql = "update todo set complete = true where id = %s and user_id = %s " % \
               (todoId, userId)
         self.ds.execute(sql)
+
+    @staticmethod
+    def todoRowMapper(row):
+        todo = Todo()
+        todo.id = row['id']
+        todo.content = row['content']
+        todo.caption = row['caption']
+        todo.complete = row['complete']
+        todo.date = row['date']
+
+        return todo

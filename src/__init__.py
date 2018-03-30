@@ -19,7 +19,7 @@ from src.dao.mainDao import DataSource
 mainDao = DataSource()
 userDao = UserDao(mainDao)
 todoDao = TodoDao(mainDao)
-goalDao = GoalDao(mainDao)
+goalDao = GoalDao(mainDao, todoDao)
 rewardDao = RewardDao(mainDao)
 utilsDao = UtilsDao(mainDao)
 

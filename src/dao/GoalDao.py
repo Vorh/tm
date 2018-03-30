@@ -1,5 +1,6 @@
 import pymysql
 from src.dao.mainDao import DataSource
+from src.dao.TodoDao import TodoDao
 from src.model.Goal import Goal
 from src.model.Todo import Todo
 from src import app
@@ -7,8 +8,9 @@ from src import app
 
 class GoalDao:
 
-    def __init__(self, dataSources: DataSource):
+    def __init__(self, dataSources: DataSource, todoDao: TodoDao):
         self.ds = dataSources
+        self.todoDao = todoDao
 
     def insertGoal(self, goal: Goal):
         sql = """INSERT INTO goal (caption, reward, user_id) VALUE
@@ -18,45 +20,26 @@ class GoalDao:
         app.logger.info('%s Insert goal %s' % (goal.user_id, goal.caption))
 
     def getListGoal(self, userId):
-        sql = """
-              SELECT g.caption AS gCaption,
-              g.id as gId,
-              g.create_date as gDate,
-              t.*
-              FROM goal g LEFT JOIN goal_todo todo ON g.id = todo.goal_id
-              LEFT JOIN todo t ON todo.todo_id = t.id
-              where g.user_id = %s
-              """ % userId
+        sql = """ select * from goal where user_id = '%s'; """ % userId
 
         cur = self.ds.execute(sql)
 
         result = cur.fetchall()
 
         goals = {}
+        listGoalsIds = []
         for row in result:
-            gId = row['gId']
+            gId = row['id']
+            goal = Goal()
+            goal.caption = row['caption']
+            goal.create_date = row['create_date']
+            goal.id = gId
+            goals[gId] = goal
+            listGoalsIds.append(gId)
 
-            todo = Todo()
-            todo.id = row['id']
-            todo.content = row['content']
-            todo.caption = row['caption']
-            todo.complete = row['complete']
-            todo.date = row['date']
-
-            if gId in goals:
-                goals[gId].listTodo.append(todo)
-            else:
-                goal = Goal()
-                goal.caption = row['gCaption']
-                goal.create_date = row['gDate']
-                goal.id = gId
-                goal.listTodo.append(todo)
-                goals[gId] = goal
-
-        listGoals = []
-        for goal in goals:
-            listGoals.append(goals[goal])
+        for todo in self.todoDao.getListByGoals(listGoalsIds):
+            goals[todo.goalId].listTodo.append(todo)
 
         app.logger.info('%s Get goals , size: %s' % (userId, len(goals)))
 
-        return listGoals
+        return goals.values()
