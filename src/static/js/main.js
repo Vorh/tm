@@ -185,8 +185,8 @@ $(document).ready(function () {
         p = document.createElement('p');
         $(p).text(caption);
 
-        mc.appendChild(c);
         mc.appendChild(p);
+        mc.appendChild(c);
         m.appendChild(mc);
 
         $(c).click(function () {

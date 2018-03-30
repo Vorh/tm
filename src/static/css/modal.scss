@@ -20,14 +20,13 @@
   width: 80%;
   text-align: center;
   font-size: 16px;
-}
 
-
-.close {
+  .close {
   color: #aaa;
-  float: right;
+    float: none;
   font-size: 28px;
   font-weight: bold;
+    text-align: center;
 }
 
 .close:hover,
@@ -36,3 +35,6 @@
   text-decoration: none;
   cursor: pointer;
 }
+}
+
+
