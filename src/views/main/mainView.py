@@ -137,5 +137,10 @@ def createReward():
 @route_view.route('/deleteReward', methods=['POST'])
 @login_required
 def deleteReward():
-    rewardDao.deleteReward(current_user.id, request.form['id'])
+    id = request.form['id']
+
+    if rewardDao.rewardIsTied(id):
+        return json.dumps({'rewardIsTied': True})
+
+    rewardDao.deleteReward(current_user.id, )
     return 'Ok'

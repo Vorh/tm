@@ -37,6 +37,11 @@ class RewardDao:
 
         return rewards
 
+    def rewardIsTied(self, rewardId):
+        sql = "select count(*) as c from goal where reward = '%s'" % rewardId
+        return self.ds.execute(sql).fetchone()['c'] >= 1
+
+
     def deleteReward(self, userId, rewardId):
         sql = "delete from reward where user_id = %s and id = %s" % \
               (userId, rewardId)

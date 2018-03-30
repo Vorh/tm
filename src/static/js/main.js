@@ -100,16 +100,22 @@ $(document).ready(function () {
         var parent = $(this).closest('.item');
         var id = parent.attr('data');
 
-        showModal('test');
 
         $.ajax({
             type: "POST",
             url: '/deleteReward',
             data: {id: id}
         }).done(function (data) {
-            parent.hide('slow', function () {
-                parent.remove();
-            });
+
+            res = JSON.parse(data);
+            if (res.rewardIsTied) {
+                new BuildModal('The reward is tied to the goal',)
+                    .addSizePx(250, 100).show();
+            } else {
+                parent.hide('slow', function () {
+                    parent.remove();
+                });
+            }
         })
     });
 
@@ -161,7 +167,7 @@ $(document).ready(function () {
     });
 
 
-    function showModal(caption, width, height) {
+    function BuildModal(caption) {
 
 
         m = document.createElement('div');
@@ -170,7 +176,6 @@ $(document).ready(function () {
 
         mc = document.createElement('div');
         $(mc).addClass('modal-content');
-        // $(mc).css({'width': width, 'height': height});
 
         c = document.createElement('span');
         $(c).addClass('close');
@@ -197,7 +202,22 @@ $(document).ready(function () {
 
         document.body.appendChild(m);
 
-        $(m).show();
+
+        this.addSize = function (width, height) {
+            $(mc).css({'width': width, 'height': height});
+
+            return this;
+        };
+
+        this.addSizePx = function (width, height) {
+            $(mc).css({'width': width + 'px', 'height': height + 'px'});
+
+            return this;
+        };
+
+        this.show = function () {
+            $(m).show();
+        };
     }
 
 });
