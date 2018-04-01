@@ -18,3 +18,7 @@ class UtilsDao:
         id = cursor.fetchone()['AUTO_INCREMENT']
         print("Generated id %s for %s" % (id, sequence))
         return id
+
+    @staticmethod
+    def toSqlList(list):
+        return ",".join(map(str, list))

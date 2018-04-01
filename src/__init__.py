@@ -19,9 +19,12 @@ from src.dao.mainDao import DataSource
 mainDao = DataSource()
 userDao = UserDao(mainDao)
 todoDao = TodoDao(mainDao)
-goalDao = GoalDao(mainDao, todoDao)
+goalDao = GoalDao(mainDao)
 rewardDao = RewardDao(mainDao)
 utilsDao = UtilsDao(mainDao)
+
+goalDao.setRewardDao(rewardDao)
+goalDao.setTodoDao(todoDao)
 
 
 @app.url_defaults

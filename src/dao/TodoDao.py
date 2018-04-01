@@ -1,5 +1,6 @@
 import pymysql
 from src.dao.mainDao import DataSource
+from src.dao.UtilsDao import UtilsDao
 from src.model.Todo import Todo
 
 
@@ -23,10 +24,10 @@ class TodoDao:
 
     def getListByGoals(self, goalIds):
         sql = """select t.*,gt.goal_id as gId from todo t INNER JOIN goal_todo gt on t.id = gt.todo_id
-where goal_id in (%s);"""
+where goal_id in (%s);""" % UtilsDao.toSqlList(goalIds)
 
         todos = []
-        for row in self.ds.executeArg(sql, (goalIds,)).fetchall():
+        for row in self.ds.execute(sql).fetchall():
             todo = TodoDao.todoRowMapper(row)
             todo.goalId = row['gId']
             todos.append(todo)

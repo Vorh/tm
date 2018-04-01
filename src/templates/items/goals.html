@@ -9,9 +9,12 @@
         <div class="goal-container">
             <div class="goal-body">
                 <span class="h-caption">{{goal.caption}}</span><br>
-                <span class="h-content">  <i class="far fa-clock"></i> {{goal.create_date}}</span>
+                <span class="h-content">  <i class="far fa-clock"></i> {{goal.create_date}}</span><br>
+                <span class="h-content">  <i class="fas fa-gift"></i> {{goal.reward.reward}}</span>
             </div>
+            {% if goal.listTodo|length > 0 %}
             <div class="goal-panel"><i class="fas fa-arrow-down"></i></div>
+            {% endif %}
         </div>
         <div class="goal-todo-list">
             {% for todo in goal.listTodo %}

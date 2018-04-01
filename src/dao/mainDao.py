@@ -19,8 +19,3 @@ class DataSource:
         self.con.commit()
         return cur
 
-    def executeArg(self, sql, args):
-        cur = self.con.cursor(pymysql.cursors.DictCursor)
-        cur.execute(sql, args)
-        self.con.commit()
-        return cur

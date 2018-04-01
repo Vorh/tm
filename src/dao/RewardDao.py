@@ -1,5 +1,6 @@
 import pymysql
 from src.dao.mainDao import DataSource
+from src.dao.UtilsDao import UtilsDao
 from src.model.Reward import Reward
 from src import app
 
@@ -28,12 +29,7 @@ class RewardDao:
 
         rewards = []
         for row in result:
-            reward = Reward()
-            reward.id = row['id']
-            reward.caption = row['caption']
-            reward.reward = row['reward']
-            reward.create_date = row['create_date']
-            rewards.append(reward)
+            rewards.append(RewardDao.rewardRowMapper(row))
 
         return rewards
 
@@ -41,6 +37,18 @@ class RewardDao:
         sql = "select count(*) as c from goal where reward = '%s'" % rewardId
         return self.ds.execute(sql).fetchone()['c'] >= 1
 
+    def getRewardByIds(self, ids):
+
+        sql = "select * from reward where id in (%s)" % UtilsDao.toSqlList(ids)
+
+        cur = self.ds.execute(sql)
+
+        res = {}
+        for row in cur.fetchall():
+            reward = RewardDao.rewardRowMapper(row)
+            res[reward.id] = reward
+
+        return res
 
     def deleteReward(self, userId, rewardId):
         sql = "delete from reward where user_id = %s and id = %s" % \
@@ -49,3 +57,13 @@ class RewardDao:
         self.ds.execute(sql)
 
         app.logger.info('%s Delete reward %s' % (userId, rewardId))
+
+    @staticmethod
+    def rewardRowMapper(row):
+        reward = Reward()
+        reward.id = row['id']
+        reward.caption = row['caption']
+        reward.reward = row['reward']
+        reward.create_date = row['create_date']
+
+        return reward
