@@ -50,7 +50,9 @@ def createTodo():
 @login_required
 def getTodos():
     todos = todoDao.getListTodo(current_user.id)
-    return render_template('items/todos.html', todos=todos)
+    countTodo = sum(True == todo.complete for todo in todos)
+
+    return render_template('items/todos.html', todos=todos, countTodo=countTodo)
 
 
 @route_view.route('/index')

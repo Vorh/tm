@@ -11,9 +11,8 @@ class TodoDao:
 
     def getListTodo(self, userId):
         print('Get todos for user %s' % userId)
-        cur = self.ds.getCursor()
         sql = "select * from todo where user_id = '%s' ORDER by date DESC" % userId
-        cur.execute(sql)
+        cur = self.ds.execute(sql)
         result = cur.fetchall()
 
         todos = []

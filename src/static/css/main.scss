@@ -3,7 +3,7 @@
   margin: 20px 20px 0 0;
   height: 90%;
   width: 98%;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
 
   .item {
@@ -15,6 +15,10 @@
   }
 }
 
+.caption-container {
+  font-size: 26px;
+}
+
 .separator-item {
   background-color: #2a2a2a;
   height: 1px;
@@ -22,3 +26,21 @@
 
 }
 
+.label {
+  color: white;
+  font-weight: 800;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+  span {
+    padding: 10px;
+  }
+
+  &.blue {
+    background: #5995ea;
+  }
+
+  &.green {
+    background: #38d655;
+  }
+}
