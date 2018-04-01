@@ -142,5 +142,5 @@ def deleteReward():
     if rewardDao.rewardIsTied(id):
         return json.dumps({'rewardIsTied': True})
 
-    rewardDao.deleteReward(current_user.id, )
-    return 'Ok'
+    rewardDao.deleteReward(current_user.id, id)
+    return json.dumps({'result': 'Ok'})
