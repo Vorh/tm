@@ -1,30 +1,18 @@
 from flask import Flask, request
 from config import Config
 from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
 app.config.from_object(Config)
+db = SQLAlchemy(app)
 loginManager = LoginManager(app)
 loginManager.init_app(app)
 loginManager.login_view = 'user_view.login'
 
-from src.dao.UserDao import UserDao
-from src.dao.TodoDao import TodoDao
-from src.dao.GoalDao import GoalDao
-from src.dao.UtilsDao import UtilsDao
-from src.dao.RewardDao import RewardDao
-from src.dao.mainDao import DataSource
 
-mainDao = DataSource()
-userDao = UserDao(mainDao)
-todoDao = TodoDao(mainDao)
-goalDao = GoalDao(mainDao)
-rewardDao = RewardDao(mainDao)
-utilsDao = UtilsDao(mainDao)
 
-goalDao.setRewardDao(rewardDao)
-goalDao.setTodoDao(todoDao)
 
 
 @app.url_defaults
@@ -44,13 +32,12 @@ def hashed_static_file(endpoint, values):
             if os.path.exists(fp):
                 values['_'] = int(os.stat(fp).st_mtime)
 
+# @loginManager.user_loader
+# def load_user(id):
+#     return userDao.getUserById(id)
 
-@loginManager.user_loader
-def load_user(id):
-    return userDao.getUserById(id)
-
-from src.views.user.userView import user_view
-from src.views.main.mainView import route_view
-
-app.register_blueprint(user_view)
-app.register_blueprint(route_view)
+# from src.views.user.userView import user_view
+# from src.views.main.mainView import route_view
+#
+# app.register_blueprint(user_view)
+# app.register_blueprint(route_view)

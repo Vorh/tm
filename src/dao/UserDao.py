@@ -10,12 +10,12 @@ class UserDao:
         self.ds = ds
 
     def isExistUser(self, name):
-        sql = "select count(*) from users where username = '%s'" % name
+        sql = "select count(*) from user where username = '%s'" % name
         cur = self.ds.execute(sql)
         return cur.fetchone()[0] == 1
 
     def getUser(self, name, password):
-        sql = "select * from users where username = '%s' and password = '%s'" % \
+        sql = "select * from user where username = '%s' and password = '%s'" % \
               (name, password)
 
         cur = self.ds.execute(sql)
@@ -26,13 +26,13 @@ class UserDao:
         return userMapper(row)
 
     def getUserById(self, userId):
-        sql = "select * from users where id = '%s'" % userId
+        sql = "select * from user where id = '%s'" % userId
 
         cur = self.ds.execute(sql)
         return userMapper(cur.fetchone())
 
     def isCorrectLogin(self, name, password):
-        sql = "select count(*) from users where username = '%s' and password = '%s'" % \
+        sql = "select count(*) from user where username = '%s' and password = '%s'" % \
               (name, password)
         cur = self.ds.execute(sql)
         return cur.fetchone()['count(*)'] == 1
