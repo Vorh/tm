@@ -1,4 +1,4 @@
-from src.dao.mainDao import DataSource
+from tm.dao.mainDao import DataSource
 
 
 class UtilsDao:

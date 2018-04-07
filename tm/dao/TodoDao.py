@@ -1,7 +1,7 @@
 import pymysql
-from src.dao.mainDao import DataSource
-from src.dao.UtilsDao import UtilsDao
-from src.model.Todo import Todo
+from tm.dao.mainDao import DataSource
+from tm.dao.UtilsDao import UtilsDao
+from tm.model.Todo import Todo
 
 
 class TodoDao:

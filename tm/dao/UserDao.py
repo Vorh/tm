@@ -1,6 +1,6 @@
 import pymysql
-from src.dao.mainDao import DataSource
-from src.model.User import User, userMapper
+from tm.dao.mainDao import DataSource
+from tm.model.User import User, userMapper
 
 
 class UserDao:

@@ -1,11 +1,11 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
 from flask_login import login_required, current_user
-from src import todoDao, userDao, goalDao, rewardDao, utilsDao
+from tm import todoDao, userDao, goalDao, rewardDao, utilsDao
 import json
 
-from src.model.Todo import Todo
-from src.model.Goal import Goal
-from src.model.Reward import Reward
+from tm.model.Todo import Todo
+from tm.model.Goal import Goal
+from tm.model.Reward import Reward
 
 route_view = Blueprint('route_view', __name__)
 

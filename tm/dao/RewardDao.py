@@ -1,8 +1,8 @@
 import pymysql
-from src.dao.mainDao import DataSource
-from src.dao.UtilsDao import UtilsDao
-from src.model.Reward import Reward
-from src import app
+from tm.dao.mainDao import DataSource
+from tm.dao.UtilsDao import UtilsDao
+from tm.model.Reward import Reward
+from tm import app
 
 
 class RewardDao:
@@ -34,7 +34,7 @@ class RewardDao:
         return rewards
 
     def rewardIsTied(self, rewardId):
-        sql = "select count(*) as c from goal where reward = '%s'" % rewardId
+        sql = "select count(*) as c from goal where reward_id = '%s'" % rewardId
         return self.ds.execute(sql).fetchone()['c'] >= 1
 
     def getRewardByIds(self, ids):

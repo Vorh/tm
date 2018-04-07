@@ -1,10 +1,10 @@
 import pymysql
-from src.dao.mainDao import DataSource
-from src.dao.TodoDao import TodoDao
-from src.dao.RewardDao import RewardDao
-from src.model.Goal import Goal
-from src.model.Todo import Todo
-from src import app
+from tm.dao.mainDao import DataSource
+from tm.dao.TodoDao import TodoDao
+from tm.dao.RewardDao import RewardDao
+from tm.model.Goal import Goal
+from tm.model.Todo import Todo
+from tm import app
 
 
 class GoalDao:
@@ -15,7 +15,7 @@ class GoalDao:
         self.todoDao = None
 
     def insertGoal(self, goal: Goal):
-        sql = """INSERT INTO goal (caption, reward, user_id) VALUE
+        sql = """INSERT INTO goal (caption, reward_id, user_id) VALUE
   ('%s','%s',%s)""" % (goal.caption, goal.reward, goal.user_id)
         self.ds.execute(sql)
 

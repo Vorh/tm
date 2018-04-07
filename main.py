@@ -1,7 +1,7 @@
 import logging
 from logging.handlers import RotatingFileHandler
 from logging import Formatter
-from src import app
+from tm import app
 
 if __name__ == "__main__":
     logHandler = logging.StreamHandler()

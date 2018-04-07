@@ -36,8 +36,8 @@ def hashed_static_file(endpoint, values):
 # def load_user(id):
 #     return userDao.getUserById(id)
 
-# from src.views.user.userView import user_view
-# from src.views.main.mainView import route_view
+# from tm.views.user.userView import user_view
+# from tm.views.main.mainView import route_view
 #
 # app.register_blueprint(user_view)
 # app.register_blueprint(route_view)
