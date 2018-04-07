@@ -5,5 +5,5 @@
 *.css
 *.map
 
-venvh/
+venv/
 tm-py/
