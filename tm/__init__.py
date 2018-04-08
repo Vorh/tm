@@ -12,9 +12,6 @@ loginManager.init_app(app)
 loginManager.login_view = 'user_view.login'
 
 
-
-
-
 @app.url_defaults
 def hashed_static_file(endpoint, values):
     if 'static' == endpoint or endpoint.endswith('.static'):
@@ -32,12 +29,17 @@ def hashed_static_file(endpoint, values):
             if os.path.exists(fp):
                 values['_'] = int(os.stat(fp).st_mtime)
 
-# @loginManager.user_loader
-# def load_user(id):
-#     return userDao.getUserById(id)
 
-# from tm.views.user.userView import user_view
-# from tm.views.main.mainView import route_view
-#
-# app.register_blueprint(user_view)
-# app.register_blueprint(route_view)
+from tm.models import User
+
+
+@loginManager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
+from tm.views.user.userView import user_view
+from tm.views.main.mainView import route_view
+
+app.register_blueprint(user_view)
+app.register_blueprint(route_view)

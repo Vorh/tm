@@ -1,6 +1,6 @@
 from flask import Flask, flash, url_for, redirect, render_template, request, session, abort, Blueprint
 from flask_login import login_user, logout_user, current_user, login_required
-from tm import userDao
+from tm.models import User
 
 user_view = Blueprint('user_view', __name__)
 
@@ -20,13 +20,12 @@ def login():
         return render_template('login.html')
 
     password = request.form['password']
-    login = request.form['username']
+    username = request.form['username']
 
-    user = userDao.getUser(login, password)
+    user = User.query.filter_by(username=username, password=password).first()
 
     if user is None:
         return redirect(url_for('user_view.login'))
-
     login_user(user)
 
     return redirect(request.args.get('next') or url_for('route_view.index'))

@@ -1,11 +1,8 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort, Blueprint
 from flask_login import login_required, current_user
-from tm import todoDao, userDao, goalDao, rewardDao, utilsDao
+from tm.models import User, Todo, Goal, Reward
 import json
 
-from tm.model.Todo import Todo
-from tm.model.Goal import Goal
-from tm.model.Reward import Reward
 
 route_view = Blueprint('route_view', __name__)
 
@@ -13,14 +10,14 @@ route_view = Blueprint('route_view', __name__)
 @route_view.route('/deleteTodo', methods=['POST'])
 @login_required
 def deleteTodo():
-    todoDao.deleteTodo(current_user.id, request.form['id'])
+    # todoDao.deleteTodo(current_user.id, request.form['id'])
     return 'Ok'
 
 
 @route_view.route('/completeTodo', methods=['POST'])
 @login_required
 def completeTodo():
-    todoDao.completeTodo(current_user.id, request.form['id'])
+    # todoDao.completeTodo(current_user.id, request.form['id'])
     return 'Ok'
 
 
@@ -28,7 +25,8 @@ def completeTodo():
 @login_required
 def createTodo():
     if request.method == 'GET':
-        goals = goalDao.getListGoal(current_user.id)
+        # goals = goalDao.getListGoal(current_user.id)
+        goal = None
         return render_template('create/createTodo.html', goals=goals)
     else:
         todo = Todo()
@@ -38,10 +36,10 @@ def createTodo():
         todo.goalId = request.form['gId']
         todoId = utilsDao.nextval('todo')
         todo.id = todoId
-        todoDao.insertTodo(todo)
+        # todoDao.insertTodo(todo)
 
-        if todo.goalId != 0:
-            todoDao.insertGoalTodo(todoId, todo.goalId)
+        # if todo.goalId != 0:
+        # todoDao.insertGoalTodo(todoId, todo.goalId)
 
         return "Ok"
 
@@ -49,7 +47,7 @@ def createTodo():
 @route_view.route('/todos')
 @login_required
 def getTodos():
-    todos = todoDao.getListTodo(current_user.id)
+    todos = Todo.query.filter_by(user_id=current_user.id).all()
     countTodo = sum(True == todo.complete for todo in todos)
 
     return render_template('items/todos.html', todos=todos, countTodo=countTodo)
@@ -64,7 +62,7 @@ def index():
 @route_view.route('/goals', methods=['GET'])
 @login_required
 def getGoals():
-    goals = goalDao.getListGoal(current_user.id)
+    goals = Goal.query.filter_by(user_id=current_user.id)
     return render_template('items/goals.html', goals=goals)
 
 
@@ -103,7 +101,7 @@ def createGoal():
 @route_view.route('/rewards', methods=['GET'])
 @login_required
 def getRewards():
-    rewards = rewardDao.getRewards(current_user.id)
+    rewards = Reward.query.filter_by(user_id=current_user.id)
     return render_template('items/rewards.html', rewards=rewards)
 
 
